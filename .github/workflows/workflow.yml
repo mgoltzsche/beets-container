@@ -1,0 +1,65 @@
+# TODO: Make downstream projects apply changes within this file.
+# Currently this file must be listed within .kptignore since it is not a KRM file.
+# However, therefore changes within the upstream repo are not propagated down.
+name: Build and release
+
+on:
+  push:
+    branches:
+    - main
+  pull_request:
+    branches:
+    - main
+
+concurrency: # Run release builds sequentially, cancel outdated PR builds
+  group: ci-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
+
+permissions: # Grant write access to github.token within non-pull_request builds
+  contents: write
+  packages: write
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+        persist-credentials: false
+
+    - id: release
+      name: Prepare release
+      uses: mgoltzsche/conventional-release@v0
+      with:
+        commit-files: deploy setters.yaml
+
+    - name: Set up qemu
+      uses: docker/setup-qemu-action@v3
+      with:
+        platforms: all
+
+    - name: Build
+      if: '!steps.release.outputs.publish'
+      run: |
+        make
+
+    - name: Log into GitHub Container Registry
+      if: steps.release.outputs.publish
+      run: echo "${{ github.token }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+    - name: Push container image
+      if: steps.release.outputs.publish
+      run: |
+        set -u
+        make release VERSION=$RELEASE_VERSION
+
+    - name: Replace image version within manifests
+      if: steps.release.outputs.publish
+      run: |
+        set -u
+        make manifest-image VERSION=$RELEASE_VERSION
+

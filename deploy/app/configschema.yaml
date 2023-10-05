@@ -1,0 +1,18 @@
+apiVersion: apps.kubemate.mgoltzsche.github.com/v1alpha1
+kind: AppConfigSchema
+metadata: # kpt-merge: /${APP_NAME:=app}
+  name: ${APP_NAME:=app}
+  annotations:
+    internal.kpt.dev/upstream-identifier: 'apps.kubemate.mgoltzsche.github.com|AppConfigSchema|default|${APP_NAME:=app}'
+
+# TODO: define the parameters for your app here
+#spec:
+#  params:
+#  - name: EXAMPLE_VAR
+#    type: enum # password|string|enum|number|boolean
+#    enum:
+#    - value-a
+#    - value-b
+#    title: Example config option
+#    category: General # tab within the GUI
+#    description: This is an example option.

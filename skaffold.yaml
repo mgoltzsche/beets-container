@@ -1,0 +1,28 @@
+apiVersion: skaffold/v3alpha1
+kind: Config
+metadata: # kpt-merge: /data
+  name: data
+  annotations:
+    internal.kpt.dev/upstream-identifier: 'skaffold|Config|default|data'
+build:
+  tagPolicy:
+    gitCommit: {}
+  artifacts:
+  - image: ghcr.io/mgoltzsche/beets # kpt-set: ${image}
+    docker:
+      dockerfile: Dockerfile
+  local:
+    push: false
+manifests:
+  kustomize:
+    paths:
+    - ./deploy/default
+profiles:
+- name: release
+  build:
+    platforms:
+    - linux/arm64/v8
+    - linux/amd64
+    local:
+      push: true
+      useBuildkit: true

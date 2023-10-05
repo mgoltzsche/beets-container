@@ -1,0 +1,62 @@
+directory: /data/music
+library: /data/musiclibrary.db
+
+plugins:
+- describe
+- web
+- smartplaylist
+- lastgenre
+- random
+
+web:
+  host: 0.0.0.0
+  port: 8337
+  reverse_proxy: true
+  readonly: true
+
+# Generate playlists from music library queries.
+# See https://beets.readthedocs.io/en/stable/plugins/smartplaylist.html
+smartplaylist:
+  relative_to: /data/playlists
+  playlist_dir: /data/playlists
+  forward_slash: no
+  playlists:
+  - name: all.m3u
+    query: ''
+  - name: jazz.m3u
+    query:
+    - genre:Jazz
+    - genre:Blues
+  - name: dub.m3u
+    query:
+    - genre:Dub
+    - genre:Raggae
+  - name: chillout.m3u
+    query:
+    - genre:Chillout
+    - genre:Downtempo
+    - genre:Ambient
+    - genre:"Trip-Hop"
+  - name: funk.m3u
+    query:
+    - genre:"World Music"
+    - genre:Funk
+  - name: dnb.m3u
+    query:
+    - genre:"Drum And Bass"
+    - genre:Jungle
+    - genre:Dubstep
+  - name: electronic.m3u
+    query:
+    - genre:Electronic
+    - genre:House
+    - genre:"Deep House"
+    - genre:"Tech House"
+    - genre:Microhouse
+    - genre:"Minimal Techno"
+  - name: instrumental.m3u
+    query:
+    - genre:Ska
+    - genre:"Bossa Nova"
+    - genre:"Indie Folk"
+    - genre:"Instrumental Rock"
