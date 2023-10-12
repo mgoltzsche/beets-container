@@ -1,25 +1,162 @@
 directory: /data/music
 library: /data/musiclibrary.db
 
+paths:
+  default: $albumartist/$album%aunique{}/$track $title
+  singleton: Non-Album/$first_artist/$title
+  comp: Compilations/$album%aunique{}/$track $title
+
+# Load plugins beets can use.
 plugins:
 - describe
 - web
+- types
 - smartplaylist
+- importfeeds
+- mbsync
 - lastgenre
+- ftintitle
+- inline
+- rewrite
+- ihate
+- chroma
+#- replaygain
+- mpdstats
+- convert
+- bpm
+- duplicates
+- bareasc
+- fuzzy
+- info
+- badfiles
+- unimported
 - random
 
+# Run a web server that provides a simple GUI and API.
+# See https://beets.readthedocs.io/en/stable/plugins/web.html
 web:
   host: 0.0.0.0
   port: 8337
   reverse_proxy: true
   readonly: true
 
+# Import new audio files into the music library.
+# Usage: beet import /import --singletons
+import:
+  write: yes
+  copy: yes
+  incremental: true
+  quiet: false
+  log: /data/import.log
+  # To import a large amount of data, enable this flag, run `beets import -q`, disable the flag and run `beets import`.
+  # This is to be prompted for skipped tracks only.
+  #incremental_skip_later: true
+
+# Move featured artists from the artist field to the title field.
+# Apparently this works with albums only.
+# See https://beets.readthedocs.io/en/stable/plugins/ftintitle.html
+ftintitle:
+  auto: true
+  drop: false
+  format: 'feat. {0}'
+
+# Extract the first artist into separate field when multiple artists specified.
+# Works like the ftintitle plugin above but with non-album items.
+# See https://github.com/beetbox/beets/issues/3176#issuecomment-851875879
+item_fields:
+  first_artist: |
+    import re
+    m = re.match('^(.+?)\\s+(x\\s|\\(?(feat(\\.?|uring)|(ft|vs)\\.))', artist, flags=re.IGNORECASE)
+    if m:
+      return m[1]
+    return artist
+
+# Write playlist file during each import.
+# This allows to propagate the latest imports to other tools.
+# See https://beets.readthedocs.io/en/stable/plugins/importfeeds.html
+importfeeds:
+  formats: m3u
+  dir: /data/importfeed
+  m3u_name: imported.m3u
+
+# Search tracks using their ASCII representation.
+# See https://beets.readthedocs.io/en/stable/plugins/bareasc.html
+# Example: beet ls '#dvorak'
+bareasc:
+  prefix: '#'
+
+# Search tracks using fuzzy pattern.
+# See https://beets.readthedocs.io/en/stable/plugins/fuzzy.html
+# Example: beet ls '~Vareoldur'
+fuzzy:
+  threshold: 0.7
+  prefix: '~'
+
+# Changes the type of meta data fields.
+# See https://beets.readthedocs.io/en/stable/plugins/types.html
+#types:
+  # Change rating from string to int in order to be able to apply range queries.
+  # Usage example:
+  #   beet modify "My favorite track" rating=5
+  #   beet ls rating:4..5
+  #rating: int
+
+# Generate an acoustic fingerprint for every track and use it to lookup meta data within the Acousticid service.
+# See https://beets.readthedocs.io/en/stable/plugins/chroma.html
+chroma:
+  auto: true
+
+# Fetches genres tags from last.fm and assigns them to tracks.
+# See https://beets.readthedocs.io/en/stable/plugins/lastgenre.html
+lastgenre:
+  auto: true
+  canonical: true
+
+# Skip files during import using pre-configured criteria.
+# See https://beets.readthedocs.io/en/stable/plugins/ihate.html
+ihate:
+  warn:
+  - artist:rnb
+  skip:
+  - genre:Comedy
+  - artist:Adele
+  - artist:AYLIVA
+  - artist:Sia
+
+# Convert audio files.
+# See https://beets.readthedocs.io/en/stable/plugins/convert.html
+convert:
+  never_convert_lossy_files: true # prevent quality from decreasing further
+  embed: false # don't embed album art
+  hardlink: false
+  #command: ffmpeg -i $source -y -vn -c:a copy -aq 2 $dest
+  #extension: m4a
+
+# List duplicate tracks within the library.
+# See https://beets.readthedocs.io/en/stable/plugins/duplicates.html
+# Example: beet duplicates -f 2000 | spark
+duplicates:
+  delete: false
+
+# Normalize the audio playback level.
+# See https://beets.readthedocs.io/en/stable/plugins/replaygain.html
+# TODO: enable when alpine supports mp3gain, see https://pkgs.alpinelinux.org/packages?name=mp3gain
+#replaygain:
+#  auto: true
+#  backend: gstreamer
+
+# Add BPM metadata to tracks by tapping.
+# See https://beets.readthedocs.io/en/stable/plugins/bpm.html
+bpm:
+  max_strokes: 3
+  overwrite: true
+
 # Generate playlists from music library queries.
 # See https://beets.readthedocs.io/en/stable/plugins/smartplaylist.html
 smartplaylist:
   relative_to: /data/playlists
   playlist_dir: /data/playlists
-  forward_slash: no
+  forward_slash: false
   playlists:
   - name: all.m3u
     query: ''
@@ -60,3 +197,22 @@ smartplaylist:
     - genre:"Bossa Nova"
     - genre:"Indie Folk"
     - genre:"Instrumental Rock"
+    - genre:"World Music"
+  - name:  'liked/1 or more.m3u'
+    query: 'play_count:1..'
+  - name:  'liked/5 or more.m3u'
+    query: 'play_count:5..'
+  - name:  'liked/loved.m3u'
+    query: 'loved:1'
+  - name:  'latest/last day.m3u'
+    query: 'added- added:-1d..'
+  - name:  'latest/last 3 days.m3u'
+    query: 'added- added:-3d..'
+  - name: 'latest/last 7 days.m3u'
+    query: 'added- added:-7d..'
+  - name: 'latest/last 14 days.m3u'
+    query: 'added- added:-14d..'
+  - name: 'latest/last 30 days.m3u'
+    query: 'added- added:-30d..'
+  - name: 'latest/last 60 days.m3u'
+    query: 'added- added:-60d..'
