@@ -14,12 +14,15 @@ plugins:
 - smartplaylist
 - importfeeds
 - mbsync
+#- discogs
+- fromfilename
 - lastgenre
 - ftintitle
 - inline
 - rewrite
 - ihate
 - chroma
+#- bpmanalyser
 #- replaygain
 - mpdstats
 - convert
@@ -28,6 +31,7 @@ plugins:
 - bareasc
 - fuzzy
 - info
+- youtube
 - badfiles
 - unimported
 - random
@@ -43,14 +47,20 @@ web:
 # Import new audio files into the music library.
 # Usage: beet import /import --singletons
 import:
-  write: yes
-  copy: yes
+  write: true
+  copy: true
   incremental: true
   quiet: false
   log: /data/import.log
   # To import a large amount of data, enable this flag, run `beets import -q`, disable the flag and run `beets import`.
   # This is to be prompted for skipped tracks only.
   #incremental_skip_later: true
+
+# Match tracks against the Discogs database during import.
+#discogs:
+#  source_weight: 0.5
+
+youtube: {}
 
 # Move featured artists from the artist field to the title field.
 # Apparently this works with albums only.
@@ -106,6 +116,16 @@ fuzzy:
 chroma:
   auto: true
 
+# Analyzes BPM and turns it into metadata.
+# See https://github.com/adamjakab/BeetsPluginBpmAnalyser
+#bpmanalyser:
+#  auto: false
+#  dry-run: false
+#  write: true
+#  threads: 2
+#  force: false
+#  quiet: false
+
 # Fetches genres tags from last.fm and assigns them to tracks.
 # See https://beets.readthedocs.io/en/stable/plugins/lastgenre.html
 lastgenre:
@@ -153,6 +173,7 @@ bpm:
 
 # Generate playlists from music library queries.
 # See https://beets.readthedocs.io/en/stable/plugins/smartplaylist.html
+# Example: beet splupdate
 smartplaylist:
   relative_to: /data/playlists
   playlist_dir: /data/playlists
