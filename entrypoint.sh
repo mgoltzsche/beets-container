@@ -1,7 +1,8 @@
 #!/bin/sh
 
-set -e
+set -eu
 
-mkdir -p /data/beets-state
+mkdir -p "$BEETSDIR"
+[ -f "$BEETSDIR/config.yaml" ] || cp /etc/beets/default-config.yaml "$BEETSDIR/config.yaml"
 
 exec beet "$@"
