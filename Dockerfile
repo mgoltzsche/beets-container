@@ -1,5 +1,5 @@
 FROM python:3-alpine3.18
-RUN apk add --update --no-cache cargo g++ openblas-dev ffmpeg flac py3-gst gst-plugins-good gst-plugins-bad chromaprint jq recode
+RUN apk add --update --no-cache cargo g++ openblas-dev ffmpeg flac py3-gst gst-plugins-good gst-plugins-bad chromaprint jq recode mpv
 RUN python3 -m pip install \
 	beets==1.6.0 \
 	flask==2.1.2 \
@@ -22,7 +22,9 @@ RUN set -eux; \
 	chown beets:beets /data
 COPY config.yaml /etc/beets/default-config.yaml
 COPY entrypoint.sh /
-ENV BEETSDIR=/data/beets
+COPY play-playlist.sh /usr/local/bin/play-playlist
+ENV BEETSDIR=/data/beets \
+	EDITOR=vi
 USER beets:beets
 WORKDIR /data
 ENTRYPOINT ["/entrypoint.sh"]

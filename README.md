@@ -20,7 +20,7 @@ docker run -ti --rm -v "$BEETS_DIR:/data" -u `id -u`:`id -g` \
 
 To generate playlists from your music library, run:
 ```sh
-docker run -ti --rm -v "$BEETS_DIR:/data" -u `id -u`:`id -g` \
+docker run --rm -v "$BEETS_DIR:/data" -u `id -u`:`id -g` \
 	-v "$BEETS_DIR:/data" \
 	ghcr.io/mgoltzsche/beets splupdate
 ```
@@ -37,6 +37,15 @@ To run the beets web server, call:
 docker run -ti --rm -v "$BEETS_DIR:/data" -u `id -u`:`id -g` \
 	-v "$BEETS_DIR:/data" \
 	ghcr.io/mgoltzsche/beets web
+```
+
+To play tracks via pulseaudio, run e.g.:
+```sh
+docker run -ti --rm -v "$BEETS_DIR:/data" -u `id -u`:`id -g` \
+	-v "$BEETS_DIR:/data" \
+	-v /run:/host/run \
+	-e PULSE_SERVER=unix:/host/run/user/`id -u`/pulse/native \
+	ghcr.io/mgoltzsche/beets play House --args=--shuffle
 ```
 
 ## Development

@@ -13,6 +13,8 @@ plugins:
 - types
 - smartplaylist
 - importfeeds
+- edit
+- play
 - mbsync
 #- discogs
 - fromfilename
@@ -175,8 +177,11 @@ bpm:
   max_strokes: 3
   overwrite: true
 
+# Allows to play tracks also during import.
+# See https://beets.readthedocs.io/en/stable/plugins/play.html
+# Example: beet play House --args=--shuffle
 play:
-  command: cmus
+  command: play-playlist
 
 # Generate playlists from music library queries.
 # See https://beets.readthedocs.io/en/stable/plugins/smartplaylist.html
