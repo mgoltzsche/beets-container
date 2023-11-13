@@ -10,9 +10,11 @@ RUN python3 -m pip install \
 	python3-discogs-client==2.7 \
 	python-mpd2==3.1.0 \
 	beets-describe==0.0.4 \
-	beets-ytimport==0.2.1 \
+	beets-ytimport==1.1.2 \
 	ytmusicapi==1.3.1 \
-	yt-dlp==2023.10.13
+	yt-dlp==2023.10.13 \
+	python-slugify==8.0.1
+
 RUN set -eux; \
 	addgroup -g 1000 beets; \
 	adduser -Su 1000 -G beets beets; \
