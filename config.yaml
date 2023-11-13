@@ -188,6 +188,8 @@ smartplaylist:
   playlists:
   - name: all.m3u
     query: ''
+  - name: all-by-album-genre.m3u
+    query: 'albumartist+ year+ album+ track+ genre+ artist+ title+'
   - name: jazz.m3u
     query:
     - genre:Jazz
