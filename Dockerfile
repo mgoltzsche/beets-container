@@ -1,5 +1,5 @@
 FROM python:3-alpine3.18
-RUN apk add --update --no-cache cargo g++ openblas-dev ffmpeg flac py3-gst gst-plugins-good gst-plugins-bad chromaprint jq recode mpv
+RUN apk add --update --no-cache cargo g++ openblas-dev ffmpeg flac py3-gst gst-plugins-good gst-plugins-bad chromaprint mpv bash jq recode
 RUN python3 -m pip install \
 	beets==1.6.0 \
 	flask==2.1.2 \
@@ -10,10 +10,9 @@ RUN python3 -m pip install \
 	python3-discogs-client==2.7 \
 	python-mpd2==3.1.0 \
 	beets-describe==0.0.4 \
-	beets-ytimport==1.1.2 \
-	ytmusicapi==1.3.1 \
-	yt-dlp==2023.10.13 \
-	python-slugify==8.0.1
+	beets-ytimport==1.3.0 \
+	ytmusicapi==1.3.2 \
+	yt-dlp==2023.11.16
 
 RUN set -eux; \
 	addgroup -g 1000 beets; \
