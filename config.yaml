@@ -2,8 +2,8 @@ directory: /data/music
 library: /data/musiclibrary.db
 
 paths:
-  default: $albumartist/$album%aunique{}/$track $title
-  singleton: Singles/$first_artist/$title
+  default: Albums/%title{$albumartist}/$album%aunique{}/$track $title
+  singleton: Singles/%title{$first_artist}/$title
   comp: Compilations/$album%aunique{}/$track $title
 
 # Load plugins beets can use.
