@@ -10,6 +10,9 @@ KUBECONFIG ?= $$HOME/.kube/config
 
 DOCKER ?= docker
 
+# Include a custom Makefile if exists.
+sinclude Makefile-ext.mk
+
 .PHONY: all
 all: image
 
