@@ -62,7 +62,7 @@ import:
 # See https://github.com/mgoltzsche/beets-ytimport
 # Usage: beet ytimport --likes
 ytimport:
-  directory: /data/youtube
+  directory: /data/ytimport
 
 # Match tracks against the Discogs database during import.
 #discogs:
