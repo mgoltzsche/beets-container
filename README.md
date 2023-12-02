@@ -57,7 +57,7 @@ To list the supported targets, run `make help`.
 * git
 * make
 * [docker 20+](https://docs.docker.com/engine/install/)
-* [kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl)
+* [kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl) (optional; if you want to deploy to Kubernetes)
 
 ### Build the application
 To build the application container image using [skaffold](https://skaffold.dev), run:
@@ -65,7 +65,13 @@ To build the application container image using [skaffold](https://skaffold.dev),
 make image
 ```
 
-### Deploy the application
+### Run a containerized shell
+
+```sh
+make beets-sh
+```
+
+### Deploy the application to Kubernetes
 To deploy the application using [skaffold](https://skaffold.dev), run:
 ```sh
 make deploy
