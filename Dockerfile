@@ -14,6 +14,11 @@ RUN python3 -m pip install \
 	ytmusicapi==1.3.2 \
 	yt-dlp==2023.11.16
 
+# beets==1.6.0 + patches
+RUN set -eux; \
+	apk add --update --no-cache git; \
+	pip install -e git+https://github.com/beetbox/beets.git@e5d10004ae08bcbbaa4ee1397a4d889e8b3b52de#egg=beets
+
 RUN set -eux; \
 	addgroup -g 1000 beets; \
 	adduser -Su 1000 -G beets beets; \
