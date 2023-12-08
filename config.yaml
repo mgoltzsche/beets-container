@@ -41,8 +41,8 @@ plugins:
 # Run a web server that provides a simple GUI and API.
 # See https://beets.readthedocs.io/en/stable/plugins/web.html
 web:
-  host: 0.0.0.0
-  port: 8337
+  host: 127.0.0.1
+  port: 8336 # 8337 is served by reverse-proxy to provide range query support.
   reverse_proxy: true
   readonly: true
 
@@ -53,6 +53,7 @@ import:
   copy: true
   incremental: true
   quiet: false
+  quiet_fallback: skip
   log: /data/import.log
   # To import a large amount of data, enable this flag, run `beets import -q`, disable the flag and run `beets import`.
   # This is to be prompted for skipped tracks only.
@@ -181,6 +182,8 @@ bpm:
 # See https://beets.readthedocs.io/en/stable/plugins/play.html
 # Example: beet play House --args=--shuffle
 play:
+  # Using mpv instead of ffplay since the latter does not support seeking when display disabled.
+  #command: ffplay -autoexit -nodisp
   command: play-playlist
 
 # Generate playlists from music library queries.

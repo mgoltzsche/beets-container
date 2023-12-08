@@ -1,5 +1,14 @@
+# Download/convert favicon
+FROM alpine:3.18 AS favicon
+RUN set -eux; \
+	apk add --update --no-cache imagemagick; \
+	wget -qO /logo.png https://raw.githubusercontent.com/beetbox/beets/e5d10004ae08bcbbaa4ee1397a4d889e8b3b52de/docs/_static/beets_logo_nobg.png; \
+	convert /logo.png -define icon:auto-resize=256,128,64,32,16 /logo.ico
+
+
+# Build actual beets container
 FROM python:3-alpine3.18
-RUN apk add --update --no-cache cargo g++ openblas-dev ffmpeg flac py3-gst gst-plugins-good gst-plugins-bad chromaprint mpv bash jq recode
+RUN apk add --update --no-cache cargo g++ openblas-dev ffmpeg flac py3-gst gst-plugins-good gst-plugins-bad chromaprint mpv bash jq recode nginx
 RUN python3 -m pip install \
 	beets==1.6.0 \
 	flask==2.1.2 \
@@ -19,6 +28,8 @@ RUN set -eux; \
 	apk add --update --no-cache git; \
 	pip install -e git+https://github.com/beetbox/beets.git@e5d10004ae08bcbbaa4ee1397a4d889e8b3b52de#egg=beets
 
+COPY --from=favicon /logo.ico /favicon.ico
+
 RUN set -eux; \
 	addgroup -g 1000 beets; \
 	adduser -Su 1000 -G beets beets; \
@@ -27,6 +38,7 @@ RUN set -eux; \
 COPY config.yaml /etc/beets/default-config.yaml
 COPY entrypoint.sh /
 COPY play-playlist.sh /usr/local/bin/play-playlist
+COPY nginx.conf /etc/nginx/nginx.conf
 ENV BEETSDIR=/data/beets \
 	EDITOR=vi
 USER beets:beets
