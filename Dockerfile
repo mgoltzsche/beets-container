@@ -10,7 +10,7 @@ RUN python3 -m pip install \
 	python3-discogs-client==2.7 \
 	python-mpd2==3.1.0 \
 	beets-describe==0.0.4 \
-	beets-ytimport==1.4.2 \
+	beets-ytimport==1.5.0 \
 	ytmusicapi==1.3.2 \
 	yt-dlp==2023.11.16
 
