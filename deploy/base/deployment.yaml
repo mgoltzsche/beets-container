@@ -27,11 +27,11 @@ spec:
         env: []
         resources:
           limits:
-            cpu: 200m
-            memory: 64Mi
+            cpu: 300m
+            memory: 256Mi
           requests:
             cpu: 100m
-            memory: 32Mi
+            memory: 128Mi
         ports:
         - containerPort: 8337 # kpt-set: ${port}
         livenessProbe:
