@@ -8,7 +8,8 @@ mkdir -p "$BEETSDIR"
 if [ "$1" = sh ]; then
 	exec "$@"
 elif [ "$1" = web ]; then
-	echo 'Running beets API (reverse-proxy) on http://127.0.0.1:8337'
+	IP="$(ip -4 a | grep inet | head -2 | tail -1 | sed -E 's!^ +inet ([^/]+)/.+$!\1!')" || (echo "ERROR: No IP found" >&2; false)
+	echo "Running beets API (reverse-proxy) on http://${IP}:8337"
 	nginx -e stderr & # start reverse-proxy
 	exec beet "$@" # -p 8336 run beet API
 else
