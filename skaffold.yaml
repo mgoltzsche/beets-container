@@ -11,6 +11,12 @@ build:
   - image: ghcr.io/mgoltzsche/beets # kpt-set: ${image}
     docker:
       dockerfile: Dockerfile
+  - image: ghcr.io/mgoltzsche/beets-plugins # kpt-set: ${plugins-image}
+    docker:
+      dockerfile: Dockerfile-plugins
+    requires:
+    - image: ghcr.io/mgoltzsche/beets
+      alias: BASEIMAGE
   local:
     push: false
 manifests:

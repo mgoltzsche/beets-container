@@ -1,5 +1,5 @@
 directory: /data/music
-library: /data/musiclibrary.db
+library: /data/beets/library.db
 
 paths:
   default: Albums/%title{$albumartist}/$album%aunique{}/$track $title
@@ -24,6 +24,7 @@ plugins:
 - rewrite
 - ihate
 - chroma
+- xtractor
 #- bpmanalyser
 #- replaygain
 - mpdstats
@@ -54,7 +55,7 @@ import:
   incremental: true
   quiet: false
   quiet_fallback: skip
-  log: /data/import.log
+  log: /data/beets/import.log
   # To import a large amount of data, enable this flag, run `beets import -q`, disable the flag and run `beets import`.
   # This is to be prompted for skipped tracks only.
   #incremental_skip_later: true
@@ -64,6 +65,35 @@ import:
 # Usage: beet ytimport --likes
 ytimport:
   directory: /data/ytimport
+
+# Extract low and high level information from songs, analyzing the audio.
+# See https://github.com/adamjakab/BeetsPluginXtractor
+xtractor:
+    auto: no
+    dry-run: no
+    write: yes
+    threads: 1
+    force: no
+    quiet: no
+    keep_output: no
+    keep_profiles: no
+    output_path: /tmp/xtractor
+    essentia_extractor: /usr/local/bin/essentia_streaming_extractor_music
+    extractor_profile:
+        highlevel:
+            svm_models:
+            - /var/lib/essentia/svm-models/beta5/danceability.history
+            - /var/lib/essentia/svm-models/beta5/gender.history
+            - /var/lib/essentia/svm-models/beta5/genre_rosamerica.history
+            - /var/lib/essentia/svm-models/beta5/mood_acoustic.history
+            - /var/lib/essentia/svm-models/beta5/mood_aggressive.history
+            - /var/lib/essentia/svm-models/beta5/mood_electronic.history
+            - /var/lib/essentia/svm-models/beta5/mood_happy.history
+            - /var/lib/essentia/svm-models/beta5/mood_sad.history
+            - /var/lib/essentia/svm-models/beta5/mood_party.history
+            - /var/lib/essentia/svm-models/beta5/mood_relaxed.history
+            - /var/lib/essentia/svm-models/beta5/voice_instrumental.history
+            - /var/lib/essentia/svm-models/beta5/moods_mirex.history
 
 # Match tracks against the Discogs database during import.
 #discogs:

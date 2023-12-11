@@ -12,5 +12,6 @@ data:
   name: beets
   title: Beets
   image: ghcr.io/mgoltzsche/beets
+  plugins-image: ghcr.io/mgoltzsche/beets-plugins
   port: 8337
   healthcheck: /

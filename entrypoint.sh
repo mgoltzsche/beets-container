@@ -2,8 +2,11 @@
 
 set -eu
 
-mkdir -p "$BEETSDIR"
-[ -f "$BEETSDIR/config.yaml" ] || cp /etc/beets/default-config.yaml "$BEETSDIR/config.yaml"
+mkdir -p "$BEETSDIR" /data/beets
+
+for INITIALIZER in /entrypoint.d/*; do
+	$INITIALIZER
+done
 
 if [ "$1" = sh ]; then
 	exec "$@"
