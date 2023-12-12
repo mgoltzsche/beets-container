@@ -16,9 +16,10 @@ RUN apk add --update --no-cache nginx
 #RUN apk add --update --no-cache cargo g++ openblas-dev ffmpeg flac py3-gst gst-plugins-good gst-plugins-bad chromaprint mpv bash jq recode nginx
 # beets==1.6.0 + patches
 RUN set -eux; \
-	apk add --update --no-cache git; \
+	BUILD_DEPS='git cargo'; \
+	apk add --update --no-cache $BUILD_DEPS; \
 	pip install -e git+https://github.com/beetbox/beets.git@e5d10004ae08bcbbaa4ee1397a4d889e8b3b52de#egg=beets; \
-	apk del --purge git
+	apk del --purge $BUILD_DEPS
 RUN python3 -m pip install \
 	flask==2.1.2 \
 	flask-cors==4.0.0 \
