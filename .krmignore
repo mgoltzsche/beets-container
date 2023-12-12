@@ -1,3 +1,4 @@
 /.github
 .releaserc.yaml
 config.yaml
+config.web.yaml
