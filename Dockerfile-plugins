@@ -15,8 +15,9 @@ COPY --from=essentia /var/lib/essentia/svm-models/beta5 /var/lib/essentia/svm-mo
 
 # Install beets plugins
 RUN apk add --update --no-cache ffmpeg mpv bash jq recode
+# yt-dlp==2023.11.16 + like_count fix
 RUN set -eux; \
-	BUILD_DEPS='cargo g++ openblas-dev'; \
+	BUILD_DEPS='git cargo g++ openblas-dev'; \
 	apk add --update --no-cache $BUILD_DEPS; \
 	python3 -m pip install \
 		pylast==5.2.0 \
@@ -27,8 +28,9 @@ RUN set -eux; \
 		beets-describe==0.0.4 \
 		beets-ytimport==1.5.0 \
 		ytmusicapi==1.3.2 \
-		yt-dlp==2023.11.16; \
+		git+https://github.com/yt-dlp/yt-dlp.git@6b5d93b0b0240e287389d1d43b2d5293e18aa4cc#egg=yt-dlp; \
 	apk del --purge $BUILD_DEPS
+
 ENV BEETSDIR=/data/beets \
 	EDITOR=vi
 COPY play-playlist.sh /usr/local/bin/play-playlist
