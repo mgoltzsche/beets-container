@@ -48,8 +48,10 @@ beet ytimport --likes --max-likes 3
 beet ls -f '$artist - $title ($genre)'
 # Inspect a particular track:
 beet info -l "Ça plane pour moi"
-# Generate m3u playlists (based on configured rules/queries):
+# Generate local m3u8 playlists (based on configured rules/queries):
 beet splupdate
+# Generate remotely playable m3u8 playlists (using script)
+beet-splupdate
 # Inspect the distribution of genres within your library:
 beet describe genre
 # Analyze your library using Essentia and save the results as metadata:
@@ -95,6 +97,8 @@ docker run --rm -u `id -u`:`id -g` -p 8337:8337 \
 	ghcr.io/mgoltzsche/beets
 ```
 Now you can access your library at e.g. [`http://localhost:8337`](http://localhost:8337).
+
+When you generated playlists using the `beet-splupdate` script within the maintenance container previously, you can access them at [`http://localhost:8337/m3u/`](http://localhost:8337/m3u/).
 
 ## Development
 

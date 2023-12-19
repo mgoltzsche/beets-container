@@ -52,6 +52,9 @@ web:
 import:
   write: true
   copy: true
+  move: false
+  link: false
+  hardlink: false
   incremental: true
   quiet: false
   quiet_fallback: skip
@@ -62,12 +65,13 @@ import:
 
 # Import liked songs from Youtube.
 # See https://github.com/mgoltzsche/beets-ytimport
-# Usage: beet ytimport --likes
+# Usage: beet ytimport --likes --max-likes 3
 ytimport:
   directory: /data/ytimport
 
 # Extract low and high level information from songs, analyzing the audio.
 # See https://github.com/adamjakab/BeetsPluginXtractor
+# Example: beet xtractor
 xtractor:
     auto: no
     dry-run: no
@@ -220,38 +224,41 @@ play:
 # See https://beets.readthedocs.io/en/stable/plugins/smartplaylist.html
 # Example: beet splupdate
 smartplaylist:
-  relative_to: /data/playlists
+  auto: false
+  output: m3u8
   playlist_dir: /data/playlists
-  forward_slash: false
+  relative_to: /data/playlists
+  #uri_format: 'http://localhost:8337/item/$id/file'
+  #uri_format: 'beets:library:track;$id'
   playlists:
-  - name: all.m3u
+  - name: all.m3u8
     query: ''
-  - name: all-by-album-genre.m3u
+  - name: all-by-album-genre.m3u8
     query: 'albumartist+ year+ album+ track+ genre+ artist+ title+'
-  - name: jazz.m3u
+  - name: jazz.m3u8
     query:
     - genre:Jazz
     - genre:Blues
-  - name: dub.m3u
+  - name: dub.m3u8
     query:
     - genre:Dub
     - genre:Raggae
-  - name: chillout.m3u
+  - name: chillout.m3u8
     query:
     - genre:Chillout
     - genre:Downtempo
     - genre:Ambient
     - genre:"Trip-Hop"
-  - name: funk.m3u
+  - name: funk.m3u8
     query:
     - genre:"World Music"
     - genre:Funk
-  - name: dnb.m3u
+  - name: dnb.m3u8
     query:
     - genre:"Drum And Bass"
     - genre:Jungle
     - genre:Dubstep
-  - name: electronic.m3u
+  - name: electronic.m3u8
     query:
     - genre:Electronic
     - genre:House
@@ -259,7 +266,7 @@ smartplaylist:
     - genre:"Tech House"
     - genre:Microhouse
     - genre:"Minimal Techno"
-  - name: instrumental.m3u
+  - name: instrumental.m3u8
     query:
     - genre:Ska
     - genre:"Bossa Nova"

@@ -6,19 +6,13 @@ RUN set -eux; \
 	convert /logo.png -define icon:auto-resize=256,128,64,32,16 /logo.ico
 
 
-# Build actual beets container
-#FROM ghcr.io/mgoltzsche/essentia:0.1.0
-#RUN apk add --update --no-cache python3 py3-pip
-#RUN rm /usr/lib/python3.11/EXTERNALLY-MANAGED
-
 FROM python:3-alpine3.19
 RUN apk add --update --no-cache nginx
-#RUN apk add --update --no-cache cargo g++ openblas-dev ffmpeg flac py3-gst gst-plugins-good gst-plugins-bad chromaprint mpv bash jq recode nginx
 # beets==1.6.0 + patches
 RUN set -eux; \
 	BUILD_DEPS='git cargo'; \
 	apk add --update --no-cache $BUILD_DEPS; \
-	pip install -e git+https://github.com/beetbox/beets.git@e5d10004ae08bcbbaa4ee1397a4d889e8b3b52de#egg=beets; \
+	pip install -e git+https://github.com/beetbox/beets.git@bcf180d14dd14604e1d82414fac28d41c275e1c9#egg=beets; \
 	apk del --purge $BUILD_DEPS
 RUN python3 -m pip install \
 	flask==2.1.2 \

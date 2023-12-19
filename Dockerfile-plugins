@@ -11,12 +11,10 @@ RUN apk add --update --no-cache qt5-qtbase yaml fftw taglib libsamplerate \
 	ffmpeg4-libswresample \
 	chromaprint
 COPY --from=essentia /usr/local/bin/essentia_streaming_extractor_music /usr/local/bin/
-COPY --from=essentia /usr/local/lib/libessentia.a /usr/local/lib/
 COPY --from=essentia /var/lib/essentia/svm-models/beta5 /var/lib/essentia/svm-models/beta5
 
 # Install beets plugins
 RUN apk add --update --no-cache ffmpeg mpv bash jq recode
-# py3-gst gst-plugins-good gst-plugins-bad
 RUN set -eux; \
 	BUILD_DEPS='cargo g++ openblas-dev'; \
 	apk add --update --no-cache $BUILD_DEPS; \
@@ -34,6 +32,7 @@ RUN set -eux; \
 ENV BEETSDIR=/data/beets \
 	EDITOR=vi
 COPY play-playlist.sh /usr/local/bin/play-playlist
+COPY beet-splupdate.sh /usr/local/bin/beet-splupdate
 COPY config.yaml /etc/beets/default-config.yaml
 COPY entrypoint-plugins.sh /entrypoint.d/10-plugins.sh
 USER beets:beets
