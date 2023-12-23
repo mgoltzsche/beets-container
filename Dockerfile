@@ -31,6 +31,7 @@ RUN set -eux; \
 	chmod +x /entrypoint.d/00.sh
 COPY config.web.yaml /etc/beets/config.yaml
 COPY nginx.conf /etc/nginx/nginx.conf
+COPY nginx-server.conf /etc/nginx/http.d/default.conf
 COPY entrypoint.sh /
 ENV BEETSDIR=/etc/beets
 USER beets:beets
