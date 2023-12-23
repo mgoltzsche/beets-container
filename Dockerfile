@@ -16,7 +16,7 @@ RUN set -eux; \
 		flask==2.1.2 \
 		flask-cors==4.0.0 \
 		Werkzeug==2.2.2 \
-		git+https://github.com/beetbox/beets.git@bcf180d14dd14604e1d82414fac28d41c275e1c9#egg=beets; \
+		git+https://github.com/beetbox/beets.git@296f01b775d3c48fa720d487e9887c074f3b3194#egg=beets; \
 	apk del --purge $BUILD_DEPS
 
 COPY --from=favicon /logo.ico /favicon.ico
