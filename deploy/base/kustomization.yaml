@@ -3,6 +3,7 @@ kind: Kustomization
 commonLabels:
   app.kubernetes.io/name: beets # kpt-set: ${name}
 resources:
+- persistentvolumeclaim.yaml
 - serviceaccount.yaml
 - service.yaml
 - deployment.yaml

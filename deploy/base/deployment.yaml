@@ -24,6 +24,7 @@ spec:
       - name: app
         image: ghcr.io/mgoltzsche/beets:0.2 # kpt-set: ${image}:${version}
         imagePullPolicy: IfNotPresent
+        args: ["web"]
         env: []
         resources:
           limits:
@@ -50,3 +51,10 @@ spec:
           periodSeconds: 3
           successThreshold: 1
           timeoutSeconds: 2
+        volumeMounts:
+        - name: data
+          mountPath: /data
+      volumes:
+      - name: data
+        persistentVolumeClaim:
+          claimName: beets-data
