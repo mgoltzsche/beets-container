@@ -7,7 +7,7 @@ RUN set -eux; \
 
 
 FROM python:3-alpine3.19
-RUN apk add --update --no-cache nginx
+RUN apk add --update --no-cache libgcc nginx
 # beets==1.6.0 + patches
 RUN set -eux; \
 	BUILD_DEPS='git cargo'; \
