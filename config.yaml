@@ -25,7 +25,6 @@ plugins:
 - ihate
 - chroma
 - xtractor
-#- bpmanalyser
 #- replaygain
 - mpdstats
 - convert
@@ -157,21 +156,17 @@ fuzzy:
 chroma:
   auto: true
 
-# Analyzes BPM and turns it into metadata.
-# See https://github.com/adamjakab/BeetsPluginBpmAnalyser
-#bpmanalyser:
-#  auto: false
-#  dry-run: false
-#  write: true
-#  threads: 2
-#  force: false
-#  quiet: false
-
 # Fetches genres tags from last.fm and assigns them to tracks.
 # See https://beets.readthedocs.io/en/stable/plugins/lastgenre.html
 lastgenre:
   auto: true
   canonical: true
+  prefer_specific: true
+  count: 2
+  source: album
+  # This file must list the genres that need to be queried subsequentially.
+  # Tree of supported genres: https://raw.githubusercontent.com/beetbox/beets/master/beetsplug/lastgenre/genres-tree.yaml
+  whitelist: /data/beets/genres.txt
 
 # Skip files during import using pre-configured criteria.
 # See https://beets.readthedocs.io/en/stable/plugins/ihate.html
@@ -222,6 +217,7 @@ play:
 
 # Generate playlists from music library queries.
 # See https://beets.readthedocs.io/en/stable/plugins/smartplaylist.html
+# Please make sure to query only genres configured within lastgenre whitelist.
 # Example: beet splupdate
 smartplaylist:
   auto: false
@@ -234,45 +230,76 @@ smartplaylist:
   - name: all.m3u8
     query: ''
   - name: all-by-album-genre.m3u8
-    query: 'albumartist+ year+ album+ track+ genre+ artist+ title+'
+    query: 'albumartist+ year+ album+ disc+ track+ genre+ artist+ title+'
   - name: jazz.m3u8
     query:
-    - genre:Jazz
-    - genre:Blues
+    - genre::'(^|, )Jazz(,|$)'
+    - genre::'(^|, )Blues(,|$)'
   - name: dub.m3u8
     query:
-    - genre:Dub
     - genre:Raggae
+    - genre::'Dub(?!step)'
   - name: chillout.m3u8
     query:
-    - genre:Chillout
-    - genre:Downtempo
+    #- genre:Chillout
     - genre:Ambient
-    - genre:"Trip-Hop"
+    - genre:Downtempo
+    - genre:'Trip Hop'
   - name: funk.m3u8
     query:
-    - genre:"World Music"
-    - genre:Funk
+    - genre:Blues
+    - genre:African
+    - genre:"Rhythm And Blues"
+    - genre::'(^|, )Funk(,|$)'
+    - genre::'(^|, )Soul(,|$)'
+    - genre:'Caribbean And Latin American'
+    - genre:Brazilian
   - name: dnb.m3u8
     query:
-    - genre:"Drum And Bass"
+    - genre:'Drum And Bass'
+    - genre:Breakbeat
     - genre:Jungle
+    - genre:Raggacore
+  - name: uk-garage.m3u8
+    query:
+    - genre:'Uk Garage'
     - genre:Dubstep
+    - genre:Grime
   - name: electronic.m3u8
     query:
     - genre:Electronic
     - genre:House
-    - genre:"Deep House"
-    - genre:"Tech House"
-    - genre:Microhouse
-    - genre:"Minimal Techno"
-  - name: instrumental.m3u8
+    - genre:Techno
+    - genre:Minimal
+    - genre:Trance
+    - genre:Goa Trance
+    - genre:Electro
+    - genre:Progressive
+  - name: house.m3u8
+    query:
+    - genre:House genre::'^(?!Tech)'
+  - name: tech-house.m3u8
+    query:
+    - genre:'Tech House'
+  - name: minimal.m3u8
+    query:
+    - genre:Minimal
+  - name: ska.m3u8
     query:
     - genre:Ska
-    - genre:"Bossa Nova"
-    - genre:"Indie Folk"
-    - genre:"Instrumental Rock"
-    - genre:"World Music"
+  - name: rock.m3u8
+    query:
+    - genre::'^Rock'
+    - genre:'Punk Rock'
+    - genre:'New Wave'
+    - genre:Folk
+  - name: pop.m3u8
+    query:
+    - genre:Pop
+    - genre:'New Wave'
+  - name: hiphop.m3u8
+    query:
+    - genre:'Hip Hop'
   - name:  'liked/1 or more.m3u'
     query: 'play_count:1..'
   - name:  'liked/5 or more.m3u'

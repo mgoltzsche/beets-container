@@ -36,6 +36,7 @@ ENV BEETSDIR=/data/beets \
 COPY play-playlist.sh /usr/local/bin/play-playlist
 COPY beet-splupdate.sh /usr/local/bin/beet-splupdate
 COPY config.yaml /etc/beets/default-config.yaml
+COPY genres.txt /etc/beets/default-genres.txt
 COPY entrypoint-plugins.sh /entrypoint.d/10-plugins.sh
 USER beets:beets
 CMD ["sh"]
