@@ -6,6 +6,8 @@ set -eu
 
 #mkdir -p /data/public
 
+rm -rf /data/playlists /data/web
+
 beet splupdate
 beet splupdate --uri-format "$BEETS_ADDRESS"'/item/$id/file' -d /data/web/playlists
 beet splupdate --uri-format 'beets:library:track;$id' -d /data/web/mopidy

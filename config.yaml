@@ -162,9 +162,11 @@ lastgenre:
   auto: true
   canonical: /etc/beets/genre-tree.yaml
   prefer_specific: true
-  count: 3
-  source: album
-  # This file must list the genres that need to be queried subsequentially.
+  count: 4 # To also tag Rage Again the Machine as Hip Hop
+  source: track
+  min_weight: 15 # To prevent Amadou & Mariam from being tagged as New Wave
+  # This files picks some of the genres defined in the canonical tree.
+  # The genres listed in this files must be aligned with the playlist queries.
   whitelist: /data/beets/genres.txt
 
 # Skip files during import using pre-configured criteria.
@@ -234,9 +236,9 @@ smartplaylist:
     query:
     - genre::'(^|, )Jazz(,|$)'
     - genre::'(^|, )Blues(,|$)'
-  - name: dub.m3u8
+  - name: reggae.m3u8
     query:
-    - genre:Raggae
+    - genre:reggae
     - genre::'Dub(?!step)'
   - name: chillout.m3u8
     query:
@@ -244,11 +246,12 @@ smartplaylist:
     - genre:Ambient
     - genre:Downtempo
     - genre:'Trip Hop'
-  - name: funk.m3u8
+  - name: world-music.m3u8
     query:
     - genre:Blues
     - genre:African
-    - genre:"Rhythm And Blues"
+    - genre:Afrobeat
+    - genre:'Rhythm And Blues'
     - genre::'(^|, )Funk(,|$)'
     - genre::'(^|, )Soul(,|$)'
     - genre:'Caribbean And Latin American'
@@ -289,16 +292,16 @@ smartplaylist:
   - name: rock.m3u8
     query:
     - genre::'^Rock'
-    - genre:'Punk Rock'
-    - genre:'New Wave'
-    - genre:Folk
+    - genre::'^Punk Rock'
+    - genre::'^New Wave'
+    - genre::'^Folk'
   - name: pop.m3u8
     query:
     - genre:Pop
     - genre:'New Wave'
   - name: hiphop.m3u8
     query:
-    - genre:'Hip Hop'
+    - genre::'^Hip Hop'
   - name:  'liked/1 or more.m3u'
     query: 'play_count:1..'
   - name:  'liked/5 or more.m3u'

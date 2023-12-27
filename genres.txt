@@ -15,6 +15,10 @@ brazilian
 classical
 
 
+easy listening
+lounge music
+
+
 electronic
 
 ambient
@@ -30,7 +34,8 @@ trip hop
 
 drum and bass
 breakbeat
-oldschool jungle
+jungle
+neurofunk
 raggacore
 
 electro
@@ -90,7 +95,7 @@ punk rock
 new wave
 
 
-raggae
+reggae
 dancehall
 ska
 dub

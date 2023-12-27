@@ -108,6 +108,7 @@
     - texas blues
     - west coast blues
 - caribbean and latin american:
+    - latin
     - bachata
     - baithak gana
     - bolero
@@ -279,6 +280,8 @@
         - nu jazz
         - trip hop
     - drum and bass:
+        - dnb
+        - drum n bass
         - darkcore
         - darkstep
         - drumfunk
@@ -288,9 +291,10 @@
         - jump-up
         - liquid funk
         - neurofunk
-        - oldschool jungle:
-            - darkside jungle
-            - ragga jungle
+        - jungle:
+            - oldschool jungle:
+                - darkside jungle
+                - ragga jungle
         - raggacore
         - sambass
         - techstep
