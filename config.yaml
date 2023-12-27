@@ -160,12 +160,11 @@ chroma:
 # See https://beets.readthedocs.io/en/stable/plugins/lastgenre.html
 lastgenre:
   auto: true
-  canonical: true
+  canonical: /etc/beets/genre-tree.yaml
   prefer_specific: true
-  count: 2
+  count: 3
   source: album
   # This file must list the genres that need to be queried subsequentially.
-  # Tree of supported genres: https://raw.githubusercontent.com/beetbox/beets/master/beetsplug/lastgenre/genres-tree.yaml
   whitelist: /data/beets/genres.txt
 
 # Skip files during import using pre-configured criteria.
