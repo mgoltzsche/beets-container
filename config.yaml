@@ -16,6 +16,7 @@ plugins:
 - edit
 - play
 - mbsync
+- spotify
 #- discogs
 - fromfilename
 - lastgenre
@@ -67,6 +68,16 @@ import:
 # Usage: beet ytimport --likes --max-likes 3
 ytimport:
   directory: /data/ytimport
+
+spotify:
+    source_weight: 0.7
+    mode: list
+    tiebreak: popularity
+    show_failures: on
+
+# Match tracks against the Discogs database during import.
+#discogs:
+#  source_weight: 0.5
 
 # Extract low and high level information from songs, analyzing the audio.
 # See https://github.com/adamjakab/BeetsPluginXtractor
@@ -122,10 +133,6 @@ xtractor:
             - /var/lib/essentia/svm-models/beta5/voice_instrumental.history
             - /var/lib/essentia/svm-models/beta5/tonal_atonal.history
             - /var/lib/essentia/svm-models/beta5/timbre.history
-
-# Match tracks against the Discogs database during import.
-#discogs:
-#  source_weight: 0.5
 
 # Move featured artists from the artist field to the title field.
 # Apparently this works with albums only.
