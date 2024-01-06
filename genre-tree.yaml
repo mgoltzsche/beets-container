@@ -280,8 +280,9 @@
         - nu jazz
         - trip hop
     - drum and bass:
-        - dnb
+        - drum & bass
         - drum n bass
+        - dnb
         - darkcore
         - darkstep
         - drumfunk
@@ -295,6 +296,9 @@
             - oldschool jungle:
                 - darkside jungle
                 - ragga jungle
+        - ragga drum and bass
+            - ragga dnb
+            - reggae jungle drum and bass
         - raggacore
         - sambass
         - techstep
@@ -422,6 +426,7 @@
         - free tekno
         - ghettotech
         - minimal
+            - minimal techno
         - nortec
         - schranz
         - techno-dnb
@@ -525,7 +530,7 @@
     - urban pasifika
     - west coast hip hop:
         - chicano rap
-        - jerkin'
+        - "jerkin'"
 - jazz:
     - asian american jazz
     - avant-garde jazz
@@ -568,6 +573,7 @@
     - straight-ahead jazz
     - stride jazz
     - swing
+      - swing jazz
     - third stream
     - trad jazz
     - vocal jazz
@@ -614,6 +620,7 @@
     - vispop
     - wonky pop
 - rhythm and blues:
+    - rhythm & blues
     - funk:
         - deep funk
         - go-go

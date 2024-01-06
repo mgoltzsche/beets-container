@@ -37,6 +37,7 @@ breakbeat
 jungle
 neurofunk
 raggacore
+ragga drum and bass
 
 electro
 
@@ -79,6 +80,7 @@ hip hop
 
 
 jazz
+swing jazz
 blues
 
 
