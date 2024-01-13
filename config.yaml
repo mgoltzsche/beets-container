@@ -193,6 +193,23 @@ fuzzy:
 chroma:
   auto: true
 
+# Ensures each track has a genre assigned.
+# Uses the lastgenre and xtractor plugins.
+# See https://github.com/mgoltzsche/beets-autogenre
+# Usage: beet autogenre [options] [item_selector]
+autogenre:
+  pretend: false
+  all: false
+  force: false
+  lastgenre: true
+  xtractor: true
+  remix_title: true
+  parent_genres: true
+  genre_rosamerica_strong: 0.8
+  genre_electronic_strong: 0.8
+  genre_electronic_prepend: 0.5
+  genre_electronic_append: 0.45
+
 # Fetches genres tags from last.fm and assigns them to tracks.
 # See https://beets.readthedocs.io/en/stable/plugins/lastgenre.html
 lastgenre:
@@ -279,7 +296,6 @@ smartplaylist:
     - genre::'Dub(?!step)'
   - name: chillout.m3u8
     query:
-    #- genre:Chillout
     - genre:Ambient
     - genre:Downtempo
     - genre:'Trip Hop'
@@ -295,7 +311,7 @@ smartplaylist:
     - genre:Brazilian
   - name: classical.m3u8
     query:
-    - genre:Classical
+    - genre::'^Classical'
   - name: dnb.m3u8
     query:
     - genre:'Drum And Bass'
