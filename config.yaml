@@ -205,10 +205,6 @@ autogenre:
   xtractor: true
   remix_title: true
   parent_genres: true
-  genre_rosamerica_strong: 0.8
-  genre_electronic_strong: 0.8
-  genre_electronic_prepend: 0.5
-  genre_electronic_append: 0.45
 
 # Fetches genres tags from last.fm and assigns them to tracks.
 # See https://beets.readthedocs.io/en/stable/plugins/lastgenre.html
@@ -286,29 +282,41 @@ smartplaylist:
     query: ''
   - name: all-by-album-genre.m3u8
     query: 'albumartist+ year+ album+ disc+ track+ genre+ artist+ title+'
-  - name: jazz.m3u8
+  - name: jazz-blues.m3u8
     query:
-    - genre::'(^|, )Jazz(,|$)'
-    - genre::'(^|, )Blues(,|$)'
+    - genre_primary:Jazz
+    - genre_primary::'^Blues'
   - name: reggae.m3u8
     query:
     - genre:reggae
-    - genre::'Dub(?!step)'
+    - genre::'^Dub(?!step)'
+  - name: dub.m3u8
+    query:
+    - genre::'^Dub(?!step)'
   - name: chillout.m3u8
     query:
-    - genre:Ambient
-    - genre:Downtempo
+    - genre_primary:Ambient
+    - genre_primary:Downtempo
+    - genre_primary:Electronica
+    - genre_primary:Electro
     - genre:'Trip Hop'
+    - genre:'Easy Listening'
+  - name: downtempo.m3u8
+    query:
+    - genre_primary:Downtempo
   - name: world-music.m3u8
     query:
-    - genre:Blues
+    - genre_primary:Blues
     - genre:African
     - genre:Afrobeat
     - genre:'Rhythm And Blues'
     - genre::'(^|, )Funk(,|$)'
     - genre::'(^|, )Soul(,|$)'
     - genre:'Caribbean And Latin American'
-    - genre:Brazilian
+    - genre_primary:Brazilian
+  - name: afrobeat.m3u8
+    query:
+    - genre:Afrobeat
   - name: classical.m3u8
     query:
     - genre::'^Classical'
@@ -321,11 +329,19 @@ smartplaylist:
   - name: neurofunk.m3u8
     query:
     - genre:Neurofunk
+  - name: jungle.m3u8
+    query:
+    - genre_primary:Jungle
   - name: uk-garage.m3u8
     query:
-    - genre:'Uk Garage'
+    - genre::'^Uk Garage'
     - genre:Dubstep
     - genre:Grime
+  - name: dubstep-grime.m3u8
+    query:
+    - genre_primary:'Dark Dubstep'
+    - genre_primary:Dubstep bpm:0..90
+    - genre_primary:Grime
   - name: electronic.m3u8
     query:
     - genre:Electronic
@@ -336,18 +352,32 @@ smartplaylist:
     - genre:Goa Trance
     - genre:Electro
     - genre:Progressive
+  - name: house-techno.m3u8
+    query:
+    - genre_primary:House
+    - genre_primary:Techno
+    - genre_primary:Minimal
+    - genre_primary:Progressive
   - name: house.m3u8
     query:
-    - genre:House genre::'^(?!Tech)'
-  - name: tech-house.m3u8
+    - genre_primary:House
+  - name: tech-house-minimal.m3u8
     query:
-    - genre:'Tech House'
+    - genre_primary:'Tech House'
+    - genre_primary:Minimal
+  - name: techno.m3u8
+    query:
+    - genre_primary:Techno
+    - genre_primary:Minimal
   - name: minimal.m3u8
     query:
-    - genre:Minimal
+    - genre_primary:Minimal
+  - name: trance.m3u8
+    query:
+    - genre_primary:Trance
   - name: ska.m3u8
     query:
-    - genre:Ska
+    - genre_primary:Ska
   - name: rock.m3u8
     query:
     - genre::'^Rock'
@@ -358,6 +388,7 @@ smartplaylist:
     query:
     - genre:Pop
     - genre:'New Wave'
+    - genre:'Electronic Rock'
   - name: hiphop.m3u8
     query:
     - genre::'^Hip Hop'
