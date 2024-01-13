@@ -293,12 +293,18 @@ smartplaylist:
     - genre::'(^|, )Soul(,|$)'
     - genre:'Caribbean And Latin American'
     - genre:Brazilian
+  - name: classical.m3u8
+    query:
+    - genre:Classical
   - name: dnb.m3u8
     query:
     - genre:'Drum And Bass'
     - genre:Breakbeat
     - genre:Jungle
-    - genre:Raggacore
+    - genre:'Ragga Drum And Bass'
+  - name: neurofunk.m3u8
+    query:
+    - genre:Neurofunk
   - name: uk-garage.m3u8
     query:
     - genre:'Uk Garage'
