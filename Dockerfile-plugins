@@ -27,6 +27,7 @@ RUN set -eux; \
 		beets-xtractor==0.4.1 \
 		beets-describe==0.0.4 \
 		beets-ytimport==1.5.0 \
+		beets-autogenre==0.1.0 \
 		ytmusicapi==1.3.2 \
 		git+https://github.com/yt-dlp/yt-dlp.git@6b5d93b0b0240e287389d1d43b2d5293e18aa4cc#egg=yt-dlp; \
 	apk del --purge $BUILD_DEPS

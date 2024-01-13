@@ -20,6 +20,7 @@ plugins:
 #- discogs
 - fromfilename
 - lastgenre
+- autogenre
 - ftintitle
 - inline
 - rewrite
@@ -83,56 +84,60 @@ spotify:
 # See https://github.com/adamjakab/BeetsPluginXtractor
 # Example: beet xtractor
 xtractor:
-    auto: no
-    dry-run: no
-    write: yes
-    threads: 4
-    force: no
-    quiet: no
-    keep_output: no
-    keep_profiles: no
-    output_path: /tmp/xtractor
-    essentia_extractor: /usr/local/bin/essentia_streaming_extractor_music
-    high_level_targets:
-      genre_rosamerica_probability: # 0..1
-        path: "highlevel.genre_rosamerica.probability"
-        type: float
-      genre_electronic:
-        path: "highlevel.genre_electronic.value"
-        type: string
-      genre_electronic_probability: # 0..1
-        path: "highlevel.genre_electronic.probability"
-        type: float
-      timbre: # "dark" or "bright"
-        path: "highlevel.timbre.value"
-        type: string
-      tonal_atonal: # "tonal" or "atonal"
-        path: "highlevel.tonal_atonal.value"
-        type: string
-      key_edma: # e.g. "C#"
-        path: "tonal.key_edma.key"
-        type: string
-      key_edma_scale: # e.g. "minor"
-        path: "tonal.key_edma.scale"
-        type: string
-    extractor_profile:
-        highlevel:
-            svm_models:
-            - /var/lib/essentia/svm-models/beta5/danceability.history
-            - /var/lib/essentia/svm-models/beta5/gender.history
-            - /var/lib/essentia/svm-models/beta5/genre_rosamerica.history
-            - /var/lib/essentia/svm-models/beta5/genre_electronic.history
-            - /var/lib/essentia/svm-models/beta5/mood_acoustic.history
-            - /var/lib/essentia/svm-models/beta5/mood_aggressive.history
-            - /var/lib/essentia/svm-models/beta5/mood_electronic.history
-            - /var/lib/essentia/svm-models/beta5/mood_happy.history
-            - /var/lib/essentia/svm-models/beta5/mood_sad.history
-            - /var/lib/essentia/svm-models/beta5/mood_party.history
-            - /var/lib/essentia/svm-models/beta5/mood_relaxed.history
-            - /var/lib/essentia/svm-models/beta5/moods_mirex.history
-            - /var/lib/essentia/svm-models/beta5/voice_instrumental.history
-            - /var/lib/essentia/svm-models/beta5/tonal_atonal.history
-            - /var/lib/essentia/svm-models/beta5/timbre.history
+  auto: no
+  dry-run: no
+  write: yes
+  threads: 4
+  force: no
+  quiet: no
+  keep_output: no
+  keep_profiles: no
+  output_path: /tmp/xtractor
+  essentia_extractor: /usr/local/bin/essentia_streaming_extractor_music
+  high_level_targets:
+    genre_rosamerica_probability: # 0..1
+      path: "highlevel.genre_rosamerica.probability"
+      type: float
+    genre_electronic:
+      path: "highlevel.genre_electronic.value"
+      type: string
+    genre_electronic_probability: # 0..1
+      path: "highlevel.genre_electronic.probability"
+      type: float
+    timbre: # "dark" or "bright"
+      path: "highlevel.timbre.value"
+      type: string
+    tonal_atonal: # "tonal" or "atonal"
+      path: "highlevel.tonal_atonal.value"
+      type: string
+    key_edma: # e.g. "C#"
+      path: "tonal.key_edma.key"
+      type: string
+    key_edma_scale: # e.g. "minor"
+      path: "tonal.key_edma.scale"
+      type: string
+  extractor_profile:
+      highlevel:
+        svm_models:
+        - /var/lib/essentia/svm-models/beta5/danceability.history
+        - /var/lib/essentia/svm-models/beta5/gender.history
+        - /var/lib/essentia/svm-models/beta5/genre_rosamerica.history
+        - /var/lib/essentia/svm-models/beta5/genre_electronic.history
+        - /var/lib/essentia/svm-models/beta5/mood_acoustic.history
+        - /var/lib/essentia/svm-models/beta5/mood_aggressive.history
+        - /var/lib/essentia/svm-models/beta5/mood_electronic.history
+        - /var/lib/essentia/svm-models/beta5/mood_happy.history
+        - /var/lib/essentia/svm-models/beta5/mood_sad.history
+        - /var/lib/essentia/svm-models/beta5/mood_party.history
+        - /var/lib/essentia/svm-models/beta5/mood_relaxed.history
+        - /var/lib/essentia/svm-models/beta5/moods_mirex.history
+        - /var/lib/essentia/svm-models/beta5/voice_instrumental.history
+        - /var/lib/essentia/svm-models/beta5/tonal_atonal.history
+        - /var/lib/essentia/svm-models/beta5/timbre.history
+
+# Match tracks against the Discogs database during import.
+#discogs:
+#  source_weight: 0.5
 
 # Move featured artists from the artist field to the title field.
 # Apparently this works with albums only.
@@ -191,7 +196,7 @@ chroma:
 # Fetches genres tags from last.fm and assigns them to tracks.
 # See https://beets.readthedocs.io/en/stable/plugins/lastgenre.html
 lastgenre:
-  auto: true
+  auto: false
   canonical: /etc/beets/genre-tree.yaml
   prefer_specific: true
   count: 4 # To also tag Rage Again the Machine as Hip Hop

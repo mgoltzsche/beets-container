@@ -48,6 +48,8 @@ beet ytimport --likes --max-likes 3
 beet ls -f '$artist - $title ($genre)'
 # Inspect a particular track:
 beet info -l "Ça plane pour moi"
+# Assign genres to all tracks:
+beet autogenre
 # Generate local m3u8 playlists (based on configured rules/queries):
 beet splupdate
 # Generate remotely playable m3u8 playlists (using script)
