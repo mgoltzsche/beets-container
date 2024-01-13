@@ -290,7 +290,7 @@
         - hardstep
         - intelligent drum and bass
         - jump-up
-        - liquid drum and bass
+        - liquid drum and bass:
           - liquid dnb
           - liquid funk
         - neurofunk
@@ -298,7 +298,7 @@
             - oldschool jungle:
                 - darkside jungle
                 - ragga jungle
-        - ragga drum and bass
+        - ragga drum and bass:
             - ragga dnb
             - reggae jungle drum and bass
         - raggacore
@@ -456,8 +456,8 @@
         - 4x4
         - bassline
         - breakstep
-        - dubstep
-          - dark dubstep
+        - dubstep:
+          - dark dubstep:
             - deep dubstep
         - funky
         - grime
@@ -577,7 +577,7 @@
     - soul jazz
     - straight-ahead jazz
     - stride jazz
-    - swing
+    - swing:
       - swing jazz
     - third stream
     - trad jazz
