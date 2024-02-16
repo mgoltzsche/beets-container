@@ -463,6 +463,13 @@
         - grime
         - speed garage
         - trap
+- east european:
+  - klezmer:
+    - yiddish
+  - balkan:
+    - gypsy
+    - gypsy brass
+    - gypsy jazz
 - folk:
     - american folk revival
     - anti-folk
@@ -596,7 +603,8 @@
     - classical crossover
     - europop:
         - austropop
-        - balkan pop
+        - balkan beats:
+            - balkan pop
         - french pop
         - latin pop
         - laïkó
