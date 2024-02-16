@@ -22,7 +22,7 @@ spec:
       terminationGracePeriodSeconds: 10
       containers:
       - name: app
-        image: ghcr.io/mgoltzsche/beets:0.2 # kpt-set: ${image}:${version}
+        image: ghcr.io/mgoltzsche/beetstream:0.2 # kpt-set: ${image}:${version}
         imagePullPolicy: IfNotPresent
         args: ["web"]
         env: []
@@ -34,23 +34,22 @@ spec:
             cpu: 100m
             memory: 128Mi
         ports:
-        - containerPort: 8337 # kpt-set: ${port}
+        - containerPort: 8080 # kpt-set: ${port}
         livenessProbe:
           httpGet:
             path: "/" # kpt-set: ${healthcheck}
-            port: 8337 # kpt-set: ${port}
+            port: 8080 # kpt-set: ${port}
           initialDelaySeconds: 10
           periodSeconds: 10
           successThreshold: 1
-          timeoutSeconds: 2
-        readinessProbe:
+          timeoutSeconds: 5
+        startupProbe:
           httpGet:
             path: "/" # kpt-set: ${healthcheck}
-            port: 8337 # kpt-set: ${port}
-          initialDelaySeconds: 1
+            port: 8080 # kpt-set: ${port}
           periodSeconds: 3
-          successThreshold: 1
           timeoutSeconds: 2
+          failureThreshold: 7
         volumeMounts:
         - name: data
           mountPath: /data

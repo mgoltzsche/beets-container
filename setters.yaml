@@ -11,7 +11,7 @@ data:
   version: "0.2"
   name: beets
   title: Beets
-  image: ghcr.io/mgoltzsche/beets
+  image: ghcr.io/mgoltzsche/beetstream
   plugins-image: ghcr.io/mgoltzsche/beets-plugins
-  port: 8337
+  port: 8080
   healthcheck: /

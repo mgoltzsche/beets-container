@@ -10,6 +10,7 @@ paths:
 plugins:
 - describe
 - web
+- beetstream
 - types
 - smartplaylist
 - importfeeds
@@ -47,6 +48,13 @@ web:
   port: 8336 # 8337 is served by reverse-proxy to provide range query support.
   reverse_proxy: true
   readonly: true
+
+# Run a subsonic server.
+# See https://github.com/BinaryBrain/Beetstream
+beetstream:
+  host: 127.0.0.1
+  port: 8080
+  never_transcode: true
 
 # Import new audio files into the music library.
 # Usage: beet import /import --singletons

@@ -1,5 +1,7 @@
 /.github
-.releaserc.yaml
-config.yaml
-config.web.yaml
+/.releaserc.yaml
+/config.yaml
+/config.web.yaml
+/config.beetstream.yaml
 genre-tree.yaml
+/data

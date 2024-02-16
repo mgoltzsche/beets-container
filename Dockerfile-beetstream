@@ -1,0 +1,8 @@
+ARG BASEIMAGE
+
+FROM $BASEIMAGE
+USER root:root
+RUN python3 -m pip install beetstream==1.2.0
+USER beets:beets
+COPY config.beetstream.yaml /etc/beets/config.yaml
+CMD ["beetstream"]

@@ -19,4 +19,4 @@ spec:
           service:
             name: beets # kpt-set: ${name}
             port:
-              number: 8337 # kpt-set: ${port}
+              number: 8080 # kpt-set: ${port}

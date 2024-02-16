@@ -1,0 +1,18 @@
+directory: /data/music
+library: /data/beets/library.db
+
+paths:
+  default: Albums/%title{$albumartist}/$album%aunique{}/$track $title
+  singleton: Singles/%title{$first_artist}/$title
+  comp: Compilations/$album%aunique{}/$track $title
+
+# Load plugins beets can use.
+plugins:
+- beetstream
+
+# Run a subsonic server.
+# See https://github.com/BinaryBrain/Beetstream
+beetstream:
+  host: 127.0.0.1
+  port: 8080
+  never_transcode: true
