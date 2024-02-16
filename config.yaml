@@ -293,6 +293,9 @@ smartplaylist:
   - name: dub.m3u8
     query:
     - genre::'^Dub(?!step)'
+  - name: ambient.m3u8
+    query:
+    - genre_primary:Ambient
   - name: chillout.m3u8
     query:
     - genre_primary:Ambient
@@ -314,6 +317,10 @@ smartplaylist:
     - genre::'(^|, )Soul(,|$)'
     - genre:'Caribbean And Latin American'
     - genre_primary:Brazilian
+    - genre:'Balkan Beats'
+  - name: balkan-beats.m3u8
+    query:
+    - genre:'Balkan Beats'
   - name: afrobeat.m3u8
     query:
     - genre:Afrobeat
@@ -378,17 +385,27 @@ smartplaylist:
   - name: ska.m3u8
     query:
     - genre_primary:Ska
+  - name: east-european.m3u8
+    query:
+    - genre:Balkan
+    - genre:Klezmer
+    - genre:Yiddish
+    - genre:'East European'
   - name: rock.m3u8
     query:
     - genre::'^Rock'
     - genre::'^Punk Rock'
     - genre::'^New Wave'
     - genre::'^Folk'
+  - name: punk.m3u8
+    query:
+    - genre:Punk
   - name: pop.m3u8
     query:
     - genre:Pop
     - genre:'New Wave'
     - genre:'Electronic Rock'
+    - genre:'Balkan Beats'
   - name: hiphop.m3u8
     query:
     - genre::'^Hip Hop'
