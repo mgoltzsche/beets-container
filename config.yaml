@@ -243,15 +243,16 @@ autogenre:
 # See https://beets.readthedocs.io/en/stable/plugins/lastgenre.html
 lastgenre:
   auto: false
-  canonical: /etc/beets/genre-tree.yaml
   prefer_specific: true
   count: 4 # To also tag Rage Again the Machine as Hip Hop
-  source: track
+  # Last.fm has more accurate data for source=album than for source=track:
+  # * source=album tags Yussef Kamaal's Black Focus Album as "Broken Beat" instead of "Jazz Fusion".
+  # * source=track tags Bellaire, Tour de Manege and Jamiroquai as Jazz.
+  source: album
   # min_weight of last.fm tags
   # 15% to prevent Amadou & Mariam from being tagged as New Wave
-  # 20% to prevent Total Science from being tagged as Liquid DnB
-  # 35% to prevent Ajukaja from being tagged as Minimal as opposed to House
-  min_weight: 35
+  min_weight: 15
+  canonical: /etc/beets/genre-tree.yaml
   # This files picks some of the genres defined in the canonical tree.
   # The genres listed in this files must be aligned with the playlist queries.
   whitelist: /data/beets/genres.txt
@@ -313,8 +314,6 @@ smartplaylist:
   attributes: [id]
   playlist_dir: /data/playlists
   relative_to: /data/playlists
-  #uri_format: 'http://localhost:8337/item/$id/file'
-  #uri_format: 'beets:library:track;$id'
   playlists:
   - name: all.m3u8
     query: ''
@@ -322,131 +321,145 @@ smartplaylist:
     query: 'albumartist+ year+ album+ disc+ track+ genre+ artist+ title+'
   - name: jazz-blues.m3u8
     query:
-    - genre_primary:Jazz
-    - genre_primary::'^Blues'
+    - genre::^Jazz
+    - genre::^Blues
+    - genre:'Jazz Fusion'
+    - genre:'Swing Jazz'
   - name: reggae.m3u8
     query:
-    - genre:reggae
-    - genre::'^Dub(?!step)'
+    - genres:Reggae
+    - genres::'^Dub$'
+    - genres:Ska
   - name: dub.m3u8
     query:
-    - genre::'^Dub(?!step)'
+    - genre::'^Dub$'
   - name: ambient.m3u8
     query:
-    - genre_primary:Ambient
+    - genre:Ambient
   - name: chillout.m3u8
     query:
-    - genre_primary:Ambient
-    - genre_primary:Downtempo
-    - genre_primary:Electronica
-    - genre_primary:Electro
+    - genre:Ambient
+    - genre:Downtempo
+    - genre:'Nu Jazz'
     - genre:'Trip Hop'
+    - genre:Electronica
+    - genre::'^Electro$'
     - genre:'Easy Listening'
+  - name: idm.m3u8
+    query:
+    - genre:Idm
+    - genre:Breakcore
   - name: downtempo.m3u8
     query:
-    - genre_primary:Downtempo
+    - genre:Downtempo
+    - genre:'Nu Jazz'
   - name: world-music.m3u8
     query:
-    - genre_primary:Blues
-    - genre:African
-    - genre:Afrobeat
-    - genre:'Rhythm And Blues'
-    - genre::'(^|, )Funk(,|$)'
-    - genre::'(^|, )Soul(,|$)'
-    - genre:'Caribbean And Latin American'
-    - genre_primary:Brazilian
-    - genre:'Balkan Beats'
-  - name: balkan-beats.m3u8
+    - genre:Blues
+    - genres:African
+    - genres:Afrobeat
+    - genres:'Rhythm And Blues'
+    - genres::'(^|, )Funk(,|$)'
+    - genres::'(^|, )Soul(,|$)'
+    - genres:'Caribbean And Latin American'
+    - genre:Brazilian
+    - genre:Balkan
+    - genre:Klezmer
+    - genres:'East European'
+  - name: african.m3u8
     query:
-    - genre:'Balkan Beats'
+    - genres:African
+    - genres:Afrobeat
   - name: afrobeat.m3u8
     query:
-    - genre:Afrobeat
+    - genres:Afrobeat
+  - name: balkan-klezmer.m3u8
+    query:
+    - genre:'East European'
+    - genre:Balkan
+    - genre:Klezmer
   - name: classical.m3u8
     query:
-    - genre::'^Classical'
+    - genre:Classical
   - name: dnb.m3u8
     query:
-    - genre:'Drum And Bass'
+    - genres:'Drum And Bass'
     - genre:Breakbeat
     - genre:Jungle
+    - genre:Neurofunk
+    - genre:'Liquid Drum And Bass'
     - genre:'Ragga Drum And Bass'
   - name: neurofunk.m3u8
     query:
     - genre:Neurofunk
   - name: jungle.m3u8
     query:
-    - genre_primary:Jungle
+    - genre:Jungle
   - name: uk-garage.m3u8
     query:
-    - genre::'^Uk Garage'
-    - genre:Dubstep
+    - genres:'Uk Garage'
+    - genres:Dubstep
     - genre:Grime
   - name: dubstep-grime.m3u8
     query:
-    - genre_primary:'Dark Dubstep'
-    - genre_primary:Dubstep bpm:0..90
-    - genre_primary:Grime
+    - genre:'Dark Dubstep'
+    - genre:Dubstep bpm:0..90
+    - genre:Grime
   - name: electronic.m3u8
     query:
-    - genre:Electronic
+    - genres:Electronic
+  - name: house-techno.m3u8
+    query:
     - genre:House
     - genre:Techno
     - genre:Minimal
-    - genre:Trance
-    - genre:Goa Trance
-    - genre:Electro
     - genre:Progressive
-  - name: house-techno.m3u8
+  - name: deep-house.m3u8
     query:
-    - genre_primary:House
-    - genre_primary:Techno
-    - genre_primary:Minimal
-    - genre_primary:Progressive
+    - genre:'Deep House'
+    - genre:"Nu Jazz" genres:House # includes Bellaire and MEUTE
   - name: house.m3u8
     query:
-    - genre_primary:House
+    - genre:House
+    - genre:"Nu Jazz" genres:House
   - name: tech-house-minimal.m3u8
     query:
-    - genre_primary:'Tech House'
-    - genre_primary:Minimal
+    - genre:'Tech House'
+    - genre:Minimal
   - name: techno.m3u8
     query:
-    - genre_primary:Techno
-    - genre_primary:Minimal
+    - genre:Techno
+    - genre:Minimal
   - name: minimal.m3u8
     query:
-    - genre_primary:Minimal
+    - genre:Minimal
   - name: trance.m3u8
     query:
-    - genre_primary:Trance
+    - genre:Trance
+  - name: goa.m3u8
+    query:
+    - genre:'Goa Trance'
   - name: ska.m3u8
     query:
-    - genre_primary:Ska
-  - name: east-european.m3u8
-    query:
-    - genre:Balkan
-    - genre:Klezmer
-    - genre:Yiddish
-    - genre:'East European'
+    - genre:Ska
   - name: rock.m3u8
     query:
     - genre::'^Rock'
-    - genre::'^Punk Rock'
     - genre::'^New Wave'
     - genre::'^Folk'
-  - name: punk.m3u8
+  - name: punk-rock.m3u8
     query:
     - genre:Punk
   - name: pop.m3u8
     query:
     - genre:Pop
     - genre:'New Wave'
-    - genre:'Electronic Rock'
     - genre:'Balkan Beats'
+    - genre::'^Electro$'
+    - genres::'^Electronic Rock, (?!Drum And Bass)'
   - name: hiphop.m3u8
     query:
-    - genre::'^Hip Hop'
+    - genre:'Hip Hop'
   - name:  'liked/1 or more.m3u'
     query: 'play_count:1..'
   - name:  'liked/5 or more.m3u'

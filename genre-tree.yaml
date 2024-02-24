@@ -277,7 +277,8 @@
         - dubtronica
         - ethnic electronica
         - moombahton
-        - nu jazz
+        - nu jazz:
+            - electro-jazz
         - trip hop
     - drum and bass:
         - drum & bass
@@ -427,6 +428,7 @@
         - detroit techno
         - free tekno
         - ghettotech
+        - deep techno
         - minimal:
             - minimal techno
         - nortec
@@ -562,9 +564,9 @@
     - free jazz
     - gypsy jazz
     - hard bop
-    - jazz fusion
-    - jazz rock
-    - jazz-funk
+    - jazz fusion:
+        - jazz funk
+        - jazz rock
     - kansas city jazz
     - latin jazz
     - livetronica

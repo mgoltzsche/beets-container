@@ -31,6 +31,7 @@ disco
 
 downtempo
 trip hop
+nu jazz
 
 drum and bass
 breakbeat
@@ -47,6 +48,7 @@ electroacoustic
 electronic rock
 
 electronica
+idm
 
 eurodance
 
@@ -55,6 +57,7 @@ hardcore
 hi-nrg
 
 house
+deep house
 tech house
 
 industrial
@@ -88,6 +91,7 @@ hip hop
 
 jazz
 swing jazz
+jazz fusion
 blues
 
 
