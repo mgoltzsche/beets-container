@@ -125,6 +125,12 @@ make image
 make beets-sh
 ```
 
+### Run the beets web server
+
+```sh
+make beets-web
+```
+
 ### Deploy the application to Kubernetes
 To deploy the application using [skaffold](https://skaffold.dev), run:
 ```sh

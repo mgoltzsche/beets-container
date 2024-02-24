@@ -7,7 +7,7 @@ RUN set -eux; \
 
 
 FROM python:3-alpine3.19
-RUN apk add --update --no-cache libgcc nginx
+RUN apk add --update --no-cache libgcc
 # beets==1.6.0 + patches
 RUN set -eux; \
 	BUILD_DEPS='git cargo'; \
@@ -16,7 +16,10 @@ RUN set -eux; \
 		flask==2.1.2 \
 		flask-cors==4.0.0 \
 		Werkzeug==2.2.2 \
-		git+https://github.com/beetbox/beets.git@296f01b775d3c48fa720d487e9887c074f3b3194#egg=beets; \
+		git+https://github.com/beetbox/beets.git@a780bfb189c59d390ea4e1ebd3e458b32ffac94b#egg=beets \
+		beetstream==1.2.0 \
+		beets-webm3u==0.3.0 \
+		beets-webrouter==0.2.0; \
 	apk del --purge $BUILD_DEPS
 
 COPY --from=favicon /logo.ico /favicon.ico
@@ -30,11 +33,9 @@ RUN set -eux; \
 	printf '#!/bin/sh\n' > /entrypoint.d/00.sh; \
 	chmod +x /entrypoint.d/00.sh
 COPY config.web.yaml /etc/beets/config.yaml
-COPY nginx.conf /etc/nginx/nginx.conf
-COPY nginx-server.conf /etc/nginx/http.d/default.conf
 COPY entrypoint.sh /
 ENV BEETSDIR=/etc/beets
 USER beets:beets
 WORKDIR /data
 ENTRYPOINT ["/entrypoint.sh"]
-CMD ["web"]
+CMD ["webrouter"]

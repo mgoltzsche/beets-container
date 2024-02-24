@@ -8,20 +8,14 @@ build:
   tagPolicy:
     gitCommit: {}
   artifacts:
-  - image: ghcr.io/mgoltzsche/beets
+  - image: ghcr.io/mgoltzsche/beets # kpt-set: ${image}
     docker:
       dockerfile: Dockerfile
-  - image: ghcr.io/mgoltzsche/beetstream # kpt-set: ${image}
-    docker:
-      dockerfile: Dockerfile-beetstream
-    requires:
-    - image: ghcr.io/mgoltzsche/beets
-      alias: BASEIMAGE
   - image: ghcr.io/mgoltzsche/beets-plugins # kpt-set: ${plugins-image}
     docker:
       dockerfile: Dockerfile-plugins
     requires:
-    - image: ghcr.io/mgoltzsche/beetstream # kpt-set: ${image}
+    - image: ghcr.io/mgoltzsche/beets # kpt-set: ${image}
       alias: BASEIMAGE
   local:
     push: false

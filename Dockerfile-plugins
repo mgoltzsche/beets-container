@@ -35,7 +35,6 @@ RUN set -eux; \
 ENV BEETSDIR=/data/beets \
 	EDITOR=vi
 COPY play-playlist.sh /usr/local/bin/play-playlist
-COPY beet-splupdate.sh /usr/local/bin/beet-splupdate
 COPY config.yaml /etc/beets/default-config.yaml
 COPY genre-tree.yaml /etc/beets/
 COPY genres.txt /etc/beets/default-genres.txt
