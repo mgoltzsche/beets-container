@@ -46,13 +46,13 @@ plugins:
 # Run a web server that serves a GUI, Subsonic API and M3U playlists.
 # See https://github.com/mgoltzsche/beets-webrouter
 webrouter:
-  host: 127.0.0.1
+  host: 0.0.0.0
   port: 8337
-  favicon: /favicon.ico
   routes:
-    # TODO: add favicon.ico route
     /:
       plugin: web
+    /favicon.ico:
+      plugin: webrouter.favicon
     /subsonic:
       plugin: beetstream
       config:
@@ -245,7 +245,7 @@ lastgenre:
   auto: false
   prefer_specific: true
   count: 4 # To also tag Rage Again the Machine as Hip Hop
-  # Last.fm has more accurate data for source=album than for source=track:
+  # Last.fm has more accurate and complete data for source=album than for source=track:
   # * source=album tags Yussef Kamaal's Black Focus Album as "Broken Beat" instead of "Jazz Fusion".
   # * source=track tags Bellaire, Tour de Manege and Jamiroquai as Jazz.
   source: album

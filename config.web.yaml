@@ -11,12 +11,13 @@ plugins:
 # Run a web server that serves a GUI, Subsonic API and M3U playlists.
 # See https://github.com/mgoltzsche/beets-webrouter
 webrouter:
-  host: 127.0.0.1
+  host: 0.0.0.0
   port: 8337
-  favicon: /favicon.ico
   routes:
     /:
       plugin: web
+    /favicon.ico:
+      plugin: webrouter.favicon
     /subsonic:
       plugin: beetstream
       config:

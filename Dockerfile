@@ -1,11 +1,3 @@
-# Download/convert favicon
-FROM alpine:3.19 AS favicon
-RUN set -eux; \
-	apk add --update --no-cache imagemagick; \
-	wget -qO /logo.png https://raw.githubusercontent.com/beetbox/beets/e5d10004ae08bcbbaa4ee1397a4d889e8b3b52de/docs/_static/beets_logo_nobg.png; \
-	convert /logo.png -define icon:auto-resize=256,128,64,32,16 /logo.ico
-
-
 FROM python:3-alpine3.19
 RUN apk add --update --no-cache libgcc
 # beets==1.6.0 + patches
@@ -19,10 +11,8 @@ RUN set -eux; \
 		git+https://github.com/beetbox/beets.git@a780bfb189c59d390ea4e1ebd3e458b32ffac94b#egg=beets \
 		beetstream==1.2.0 \
 		beets-webm3u==0.3.0 \
-		beets-webrouter==0.2.0; \
+		beets-webrouter==0.3.0; \
 	apk del --purge $BUILD_DEPS
-
-COPY --from=favicon /logo.ico /favicon.ico
 
 RUN set -eux; \
 	addgroup -g 1000 beets; \
