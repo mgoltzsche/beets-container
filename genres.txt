@@ -2,9 +2,6 @@ african
 afrobeat
 
 
-comedy
-
-
 country
 
 
@@ -23,12 +20,6 @@ electronic
 
 ambient
 
-asian underground
-
-chiptune
-
-disco
-
 downtempo
 trip hop
 nu jazz
@@ -43,28 +34,14 @@ liquid drum and bass
 
 electro
 
-electroacoustic
-
 electronic rock
 
 electronica
 idm
 
-eurodance
-
-hardcore
-
-hi-nrg
-
 house
 deep house
 tech house
-
-industrial
-
-post-disco
-
-progressive
 
 techno
 minimal
@@ -105,6 +82,7 @@ soul
 
 
 rock
+fun metal
 punk rock
 new wave
 
