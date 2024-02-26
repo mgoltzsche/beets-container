@@ -353,6 +353,9 @@ smartplaylist:
     query:
     - genre:Downtempo
     - genre:'Nu Jazz'
+  - name: nu-jazz.m3u8
+    query:
+    - genre:'Nu Jazz'
   - name: world-music.m3u8
     query:
     - genre:Blues
@@ -417,11 +420,11 @@ smartplaylist:
   - name: deep-house.m3u8
     query:
     - genre:'Deep House'
-    - genre:"Nu Jazz" genres:House # includes Bellaire and MEUTE
+    - genre:'Nu Jazz' genres:House # includes Bellaire and MEUTE
   - name: house.m3u8
     query:
     - genre:House
-    - genre:"Nu Jazz" genres:House
+    - genre:'Nu Jazz' genres:House
   - name: tech-house-minimal.m3u8
     query:
     - genre:'Tech House'
