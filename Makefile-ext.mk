@@ -8,14 +8,6 @@ beets-web: image ## Run containerized beets web API.
 		-v "`pwd`/data:/data" \
 		ghcr.io/mgoltzsche/beets:dev
 
-.PHONY: beetstream
-beetstream: SKAFFOLD_OPTS=-t dev
-beetstream: image ## Run containerized beetstream (Subsonic) server.
-	mkdir -p data/beets
-	docker run -ti --rm -u `id -u`:`id -g` --network=host \
-		-v "`pwd`/data:/data" \
-		ghcr.io/mgoltzsche/beetstream:dev
-
 .PHONY: beets-sh
 beets-sh: SKAFFOLD_OPTS=-t dev
 beets-sh: image ## Run a shell within the beets-plugins container.
