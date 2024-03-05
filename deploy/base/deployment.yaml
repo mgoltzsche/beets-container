@@ -22,7 +22,7 @@ spec:
       terminationGracePeriodSeconds: 10
       containers:
       - name: app
-        image: ghcr.io/mgoltzsche/beets:0.2 # kpt-set: ${image}:${version}
+        image: ghcr.io/mgoltzsche/beets:0.14.0 # kpt-set: ${image}:${version}
         imagePullPolicy: IfNotPresent
         args: ["web"]
         env: []
