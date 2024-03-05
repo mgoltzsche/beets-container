@@ -10,7 +10,7 @@ RUN set -eux; \
 		Werkzeug==2.2.2 \
 		git+https://github.com/beetbox/beets.git@a780bfb189c59d390ea4e1ebd3e458b32ffac94b#egg=beets \
 		beetstream==1.2.0 \
-		beets-webm3u==0.3.0 \
+		beets-webm3u==0.4.3 \
 		beets-webrouter==0.3.0; \
 	apk del --purge $BUILD_DEPS
 
