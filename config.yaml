@@ -421,10 +421,12 @@ smartplaylist:
   - name: deep-house.m3u
     query:
     - genre:'Deep House'
+    - genre:'Slow House'
     - genre:'Nu Jazz' genres:House # includes Bellaire and MEUTE
   - name: house.m3u
     query:
     - genre:House
+    - genre:'Slow House'
     - genre:'Nu Jazz' genres:House
   - name: tech-house-minimal.m3u
     query:
