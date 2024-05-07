@@ -22,6 +22,7 @@ webrouter:
       plugin: beetstream
       config:
         never_transcode: true
+        playlist_dir: /data/playlists
     /m3u:
       plugin: webm3u
 

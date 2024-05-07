@@ -1,5 +1,5 @@
 FROM python:3-alpine3.19
-RUN apk add --update --no-cache libgcc
+RUN apk add --update --no-cache libgcc ffmpeg
 # beets==1.6.0 + patches
 RUN set -eux; \
 	BUILD_DEPS='git cargo'; \
@@ -8,9 +8,10 @@ RUN set -eux; \
 		flask==2.1.2 \
 		flask-cors==4.0.0 \
 		Werkzeug==2.2.2 \
-		git+https://github.com/beetbox/beets.git@a780bfb189c59d390ea4e1ebd3e458b32ffac94b#egg=beets \
-		beetstream==1.2.0 \
-		beets-webm3u==0.4.3 \
+		git+https://github.com/beetbox/beets.git@c75f07a0da6c622d3cd0f5aad0a08edaea360dad#egg=beets \
+		beetstream==1.4.0 \
+		ffmpeg-python==0.2.0 \
+		beets-webm3u==0.6.4 \
 		beets-webrouter==0.3.0; \
 	apk del --purge $BUILD_DEPS
 

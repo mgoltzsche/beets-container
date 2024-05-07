@@ -50,10 +50,8 @@ beet ls -f '$artist - $title ($genre)'
 beet info -l "Ça plane pour moi"
 # Assign genres to all tracks:
 beet autogenre
-# Generate local m3u8 playlists (based on configured rules/queries):
+# Generate M3U playlists (based on configured rules/queries):
 beet splupdate
-# Generate remotely playable m3u8 playlists (using script)
-beet-splupdate
 # Inspect the distribution of genres within your library:
 beet describe genre
 # Analyze your library using Essentia and save the results as metadata:

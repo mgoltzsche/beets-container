@@ -57,6 +57,7 @@ webrouter:
       plugin: beetstream
       config:
         never_transcode: true
+        playlist_dir: /data/playlists
     /m3u:
       plugin: webm3u
 
@@ -310,33 +311,33 @@ play:
 # Example: beet splupdate
 smartplaylist:
   auto: false
-  output: m3u8
-  attributes: [id]
+  output: extm3u
+  fields: [id]
   playlist_dir: /data/playlists
   relative_to: /data/playlists
   playlists:
-  - name: all.m3u8
+  - name: all.m3u
     query: ''
-  - name: all-by-album-genre.m3u8
+  - name: all-by-album-genre.m3u
     query: 'albumartist+ year+ album+ disc+ track+ genre+ artist+ title+'
-  - name: jazz-blues.m3u8
+  - name: jazz-blues.m3u
     query:
     - genre::^Jazz
     - genre::^Blues
     - genre:'Jazz Fusion'
     - genre:'Swing Jazz'
-  - name: reggae.m3u8
+  - name: reggae.m3u
     query:
     - genres:Reggae
     - genres::'^Dub$'
     - genres:Ska
-  - name: dub.m3u8
+  - name: dub.m3u
     query:
     - genre::'^Dub$'
-  - name: ambient.m3u8
+  - name: ambient.m3u
     query:
     - genre:Ambient
-  - name: chillout.m3u8
+  - name: chillout.m3u
     query:
     - genre:Ambient
     - genre:Downtempo
@@ -345,18 +346,18 @@ smartplaylist:
     - genre:Electronica
     - genre::'^Electro$'
     - genre:'Easy Listening'
-  - name: idm.m3u8
+  - name: idm.m3u
     query:
     - genre:Idm
     - genre:Breakcore
-  - name: downtempo.m3u8
+  - name: downtempo.m3u
     query:
     - genre:Downtempo
     - genre:'Nu Jazz'
-  - name: nu-jazz.m3u8
+  - name: nu-jazz.m3u
     query:
     - genre:'Nu Jazz'
-  - name: world-music.m3u8
+  - name: world-music.m3u
     query:
     - genre:Blues
     - genres:African
@@ -369,22 +370,22 @@ smartplaylist:
     - genre:Balkan
     - genre:Klezmer
     - genres:'East European'
-  - name: african.m3u8
+  - name: african.m3u
     query:
     - genres:African
     - genres:Afrobeat
-  - name: afrobeat.m3u8
+  - name: afrobeat.m3u
     query:
     - genres:Afrobeat
-  - name: balkan-klezmer.m3u8
+  - name: balkan-klezmer.m3u
     query:
     - genre:'East European'
     - genre:Balkan
     - genre:Klezmer
-  - name: classical.m3u8
+  - name: classical.m3u
     query:
     - genre:Classical
-  - name: dnb.m3u8
+  - name: dnb.m3u
     query:
     - genres:'Drum And Bass'
     - genre:Breakbeat
@@ -392,77 +393,77 @@ smartplaylist:
     - genre:Neurofunk
     - genre:'Liquid Drum And Bass'
     - genre:'Ragga Drum And Bass'
-  - name: neurofunk.m3u8
+  - name: neurofunk.m3u
     query:
     - genre:Neurofunk
-  - name: jungle.m3u8
+  - name: jungle.m3u
     query:
     - genre:Jungle
-  - name: uk-garage.m3u8
+  - name: uk-garage.m3u
     query:
     - genres:'Uk Garage'
     - genres:Dubstep
     - genre:Grime
-  - name: dubstep-grime.m3u8
+  - name: dubstep-grime.m3u
     query:
     - genre:'Dark Dubstep'
     - genre:Dubstep bpm:0..90
     - genre:Grime
-  - name: electronic.m3u8
+  - name: electronic.m3u
     query:
     - genres:Electronic
-  - name: house-techno.m3u8
+  - name: house-techno.m3u
     query:
     - genre:House
     - genre:Techno
     - genre:Minimal
     - genre:Progressive
-  - name: deep-house.m3u8
+  - name: deep-house.m3u
     query:
     - genre:'Deep House'
     - genre:'Nu Jazz' genres:House # includes Bellaire and MEUTE
-  - name: house.m3u8
+  - name: house.m3u
     query:
     - genre:House
     - genre:'Nu Jazz' genres:House
-  - name: tech-house-minimal.m3u8
+  - name: tech-house-minimal.m3u
     query:
     - genre:'Tech House'
     - genre:Minimal
-  - name: techno.m3u8
+  - name: techno.m3u
     query:
     - genre:Techno
     - genre:Minimal
-  - name: minimal.m3u8
+  - name: minimal.m3u
     query:
     - genre:Minimal
-  - name: trance.m3u8
+  - name: trance.m3u
     query:
     - genre:Trance
-  - name: goa.m3u8
+  - name: goa.m3u
     query:
     - genre:'Goa Trance'
-  - name: ska.m3u8
+  - name: ska.m3u
     query:
     - genre:Ska
-  - name: rock.m3u8
+  - name: rock.m3u
     query:
     - genre::'^Rock'
     - genre::'^New Wave'
     - genre::'^Folk'
     - genre:'Fun Metal'
-  - name: punk-rock.m3u8
+  - name: punk-rock.m3u
     query:
     - genre:Punk
     - genre:'Fun Metal'
-  - name: pop.m3u8
+  - name: pop.m3u
     query:
     - genre:Pop
     - genre:'New Wave'
     - genre:'Balkan Beats'
     - genre::'^Electro$'
     - genres::'^Electronic Rock, (?!Drum And Bass)'
-  - name: hiphop.m3u8
+  - name: hiphop.m3u
     query:
     - genre:'Hip Hop'
   - name:  'liked/1 or more.m3u'
