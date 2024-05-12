@@ -29,7 +29,7 @@ RUN set -eux; \
 		beets-ytimport==1.8.1 \
 		beets-autogenre==0.4.0 \
 		ytmusicapi==1.3.2 \
-		git+https://github.com/yt-dlp/yt-dlp.git@5f25f348f9eb5db842b1ec6799f95bebb7ba35a7#egg=yt-dlp; \
+		git+https://github.com/yt-dlp/yt-dlp.git@cf212d0a331aba05c32117573f760cdf3af8c62f#egg=yt-dlp; \
 	apk del --purge $BUILD_DEPS
 
 ENV BEETSDIR=/data/beets \
