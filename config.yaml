@@ -24,6 +24,7 @@ plugins:
 - fromfilename
 - lastgenre
 - autogenre
+- fetchart
 - ftintitle
 - inline
 - rewrite
@@ -87,7 +88,7 @@ webm3u:
 import:
   write: true
   copy: true
-  move: false
+  move: true
   link: false
   hardlink: false
   incremental: true
@@ -103,10 +104,6 @@ import:
 # Usage: beet ytimport --likes --max-likes 3
 ytimport:
   directory: /data/ytimport
-
-# Files to delete from (yt)import directories.
-clutter:
-- cover.jpg
 
 spotify:
     source_weight: 0.7
