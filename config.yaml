@@ -104,6 +104,10 @@ import:
 ytimport:
   directory: /data/ytimport
 
+# Files to delete from (yt)import directories.
+clutter:
+- cover.jpg
+
 spotify:
     source_weight: 0.7
     mode: list
