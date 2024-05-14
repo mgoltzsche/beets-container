@@ -3,7 +3,7 @@ kind: Ingress
 metadata: # kpt-merge: /blueprint
   name: beets # kpt-set: ${name}
   annotations:
-    kubemate.mgoltzsche.github.com/nav-title: "Beets" # kpt-set: ${title}
+    kubemate.mgoltzsche.github.com/nav-title: "Beets UI"
     kubemate.mgoltzsche.github.com/nav-icon: favicon.ico
     kubemate.mgoltzsche.github.com/rewrite-target: /
     kubemate.mgoltzsche.github.com/set-headers: X-Script-Name=/beets

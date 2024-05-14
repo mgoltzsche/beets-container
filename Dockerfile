@@ -12,8 +12,9 @@ RUN set -eux; \
 		beetstream==1.4.0 \
 		ffmpeg-python==0.2.0 \
 		beets-webm3u==0.6.4 \
-		beets-webrouter==0.3.0; \
+		beets-webrouter==0.4.0; \
 	apk del --purge $BUILD_DEPS
+#git+https://github.com/mgoltzsche/beets-webrouter.git@23cc3d6f871299fb42986c99c683960be91f80b2#egg=beets-webrouter
 
 RUN set -eux; \
 	addgroup -g 1000 beets; \

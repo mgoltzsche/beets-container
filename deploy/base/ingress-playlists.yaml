@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: beets-playlists
+  annotations:
+    kubemate.mgoltzsche.github.com/nav-title: "Beets Playlists"
+    kubemate.mgoltzsche.github.com/nav-icon: ../beets/favicon.ico
+spec:
+  ingressClassName: kubemate
+  rules:
+  - http:
+      paths:
+      - path: /m3u/
+        pathType: Prefix
+        backend:
+          service:
+            name: beets # kpt-set: ${name}
+            port:
+              number: 8337 # kpt-set: ${port}
+      - path: /subsonic/
+        pathType: Prefix
+        backend:
+          service:
+            name: beets # kpt-set: ${name}
+            port:
+              number: 8337 # kpt-set: ${port}
