@@ -233,6 +233,7 @@ chroma:
 # See https://github.com/mgoltzsche/beets-autogenre
 # Usage: beet autogenre [options] [item_selector]
 autogenre:
+  auto: true
   pretend: false
   all: false
   force: false
