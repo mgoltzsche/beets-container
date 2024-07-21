@@ -28,8 +28,8 @@ RUN set -eux; \
 		beets-describe==0.0.4 \
 		beets-ytimport==1.9.0 \
 		beets-autogenre==0.5.0 \
-		ytmusicapi==1.7.3 \
-		yt-dlp==2024.5.27; \
+		ytmusicapi==1.7.5 \
+		yt-dlp==2024.07.16; \
 	apk del --purge $BUILD_DEPS
 
 ENV BEETSDIR=/data/beets \
