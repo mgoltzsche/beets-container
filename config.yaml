@@ -31,7 +31,7 @@ plugins:
 - ihate
 - chroma
 - xtractor
-#- replaygain
+- replaygain
 - mpdstats
 - convert
 - bpm
@@ -286,12 +286,15 @@ convert:
 duplicates:
   delete: false
 
-# Normalize the audio playback level.
+# Analyze audio to extract the loudness value for normalization by the player later.
+# (We don't want to modify/re-encode lossy audio on import since it would reduce sound quality.)
+# Stores the loudness value within the DB field r128_track_gain.
 # See https://beets.readthedocs.io/en/stable/plugins/replaygain.html
-# TODO: enable when alpine supports mp3gain, see https://pkgs.alpinelinux.org/packages?name=mp3gain
-#replaygain:
-#  auto: true
-#  backend: gstreamer
+# Example: beet replaygain -w
+replaygain:
+  auto: true
+  backend: ffmpeg
+  targetlevel: 89
 
 # Add BPM metadata to tracks by tapping.
 # See https://beets.readthedocs.io/en/stable/plugins/bpm.html
