@@ -1,4 +1,4 @@
-FROM python:3-alpine3.19
+FROM python:3.12-alpine3.20
 RUN apk add --update --no-cache libgcc ffmpeg
 # beets==1.6.0 + patches
 RUN set -eux; \
